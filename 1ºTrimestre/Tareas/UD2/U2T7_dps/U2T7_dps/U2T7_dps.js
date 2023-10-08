@@ -16,7 +16,7 @@ let nombre;
 let passwd;
 let nombreCorrecto = false;
 let passwdCorrecto = false;
-const PASSWD_CORRECTA = "<PASSWORD>"; // La contraseña correcta debe ser igual a esta constante.
+const PASSWD_CORRECTA = "MeGustaPrograma"; // La contraseña correcta debe ser igual a esta constante.
 // Variable para controlar si se ha cancelado en el primer cuadro de diálogo.
 let cancelado = false;
 
@@ -49,7 +49,7 @@ if (!cancelado) {
       break; // Salir del bucle si se cancela.
     }
 
-    if (passwd === "MeGustaProgramar") {
+    if (passwd === PASSWD_CORRECTA) {
       passwdCorrecto = true;
       alert(
         "Felicidades " +

@@ -1,9 +1,10 @@
 /**
  * @author Daniel Perez Serrano
  *
- * Este programa interactivo permite a los usuarios personalizar pizzas, eligiendo entre opciones veganas o no veganas y
+ * Este programa esta diseñado para que los usuarios puedan personalizar pizzas, eligiendo entre opciones veganas o no veganas y
  * seleccionando ingredientes adicionales. Utiliza constantes para definir ingredientes y mensajes, y variables para controlar
- * la lógica de la interacción con el usuario. El bucle principal se ejecuta hasta que se hace una elección válida o se cancela.
+ * la lógica de la interacción con el usuario.
+ * El bucle principal se ejecuta hasta que se hace una elección válida o se cancela.
  *
  */
 

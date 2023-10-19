@@ -1,9 +1,9 @@
-// CONSTANTES 
+// CONSTANTES
 const opc1 = "1.- Suma"; // Opción de sumar
 const opc2 = "2.- Resta"; // Opción de restar
 const opc3 = "3.- Multiiplicación"; // Opción de multiplicar
 const opc4 = "4.- División"; // Opción de dividir
-const fin = "Fin del programa."
+const fin = "Fin del programa.";
 
 // VARIABLES
 let n1; // Almacena el primer número entero
@@ -17,53 +17,71 @@ let restar = (a, b) => a - b; // Funcion resta
 let multiplicar = (a, b) => a * b; // Funcion multiplicar
 let dividir = (a, b) => a / b; // Funcion dividir
 // LOGICA
-while (!cancelar) { // Bucle que se ejecuta infinitamente hasta que el usuario pulse cancelar
-    n1 = prompt("Introduce un número entero: ");
-    if (!isNaN(n1) || n1 === null) { // Compruebo si no es un número O si el usuario ha pulsado cancelar
-        alert(fin);
-        cancerlar = true;
-        break;
-    }
+while (!cancelar) {
+  // Bucle que se ejecuta infinitamente hasta que el usuario pulse cancelar o haga el calculo de la funcion
+  n1 = prompt("Introduce un número entero: ");
+  if (!isNaN(n1) || n1 === null) {
+    // Compruebo si no es un número O si el usuario ha pulsado cancelar
+    alert(fin);
+    cancerlar = true;
+    break;
+  }
 
-    let a = parseInt(n1); // Inicializo la variable y parseo para obtener el entero
+  let a = parseInt(n1); // Inicializo la variable y parseo para obtener el entero
 
-    n2 = prompt("Introduce otro número entero: ");
-    if (isNaN(n2) || n2 === null) { // Compruebo si no es un número O si el usuario ha pulsado cancelar
-        alert(fin);
-        cancerlar = true;
-        break;
-    }
+  n2 = prompt("Introduce otro número entero: ");
+  if (isNaN(n2) || n2 === null) {
+    // Compruebo si no es un número O si el usuario ha pulsado cancelar
+    alert(fin);
+    cancerlar = true;
+    break;
+  }
 
-    let b = parseInt(n2); // Inicializo la variable y parseo para obtener el entero
+  let b = parseInt(n2); // Inicializo la variable y parseo para obtener el entero
 
-    respuesta = prompt("Escoge la operación que deseas realizar: \n" + opc1 + "\n" + opc2 + "\n" + opc3 + "\n" + opc4);
+  respuesta = prompt(
+    "Escoge la operación que deseas realizar: \n" +
+      opc1 +
+      "\n" +
+      opc2 +
+      "\n" +
+      opc3 +
+      "\n" +
+      opc4
+  );
 
-    if (isNaN(respuesta) || respuesta === null) {
-        alert(fin);
-        cancerlar = true;
-        break;
-    }
+  if (isNaN(respuesta) || respuesta === null) {
+    alert(fin);
+    cancerlar = true;
+    break;
+  }
 
-    let opc = parseInt(respuesta); // Parseo la respuesta para obtener el entero
+  let opc = parseInt(respuesta); // Parseo la respuesta para obtener el entero
 
-    switch (opc) {
-        case 1:
-            sumar(a,b);
-
-            break;
-        case 2:
-            restar(a,b);
-            break;
-        case 3:
-            multiplicar(a,b);
-            break;
-        case 4:
-            dividir(a,b);
-            break;
-        default:
-            break;
-    }
-
-
+  switch (opc) {
+    case 1:
+      sumar(a, b);
+      document.write("<p> El resultado de la suma es:" + sumar + " </p>");
+      cancelar = true;
+      break;
+    case 2:
+      restar(a, b);
+      document.write("<p> El resultado de la resta es:" + restar + " </p>");
+      cancelar = true;
+      break;
+    case 3:
+      multiplicar(a, b);
+      document.write(
+        "<p> El resultado de la multiplicacion es:" + multiplicar + " </p>"
+      );
+      cancelar = true;
+      break;
+    case 4:
+      dividir(a, b);
+      document.write("<p> El resultado de la division es:" + dividir + " </p>");
+      cancelar = true;
+      break;
+    default:
+      break;
+  }
 }
-

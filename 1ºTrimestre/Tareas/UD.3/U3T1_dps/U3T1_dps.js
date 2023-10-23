@@ -18,15 +18,16 @@ let resultado;
 let sumar = (a, b) => a + b; // Funcion suma
 let restar = (a, b) => a - b; // Funcion resta
 let multiplicar = (a, b) => a * b; // Funcion multiplicar
-let dividir = (a, b) => a / b; // Funcion dividir
+let dividir = (a, b) =>
+  b !== 0 ? a / b : " ERROR. -No se puede dividir entre 0"; // Función dividir con verificación de división por cero
 
 // LOGICA
 while (!cancelar) {
   // Bucle que se ejecuta infinitamente hasta que el usuario pulse cancelar o haga el calculo de la funcion
   n1 = prompt("Introduce un número entero: ");
 
-  if (isNaN(n1) || n1 === null) {
-    // Compruebo si no es un número O si el usuario ha pulsado cancelar
+  if (isNaN(n1) || n1 === null || n1 === "") {
+    // Compruebo si no es un número ó si el usuario ha pulsado cancelar
 
     alert(fin);
     cancelar = true;
@@ -35,9 +36,11 @@ while (!cancelar) {
 
   a = parseInt(n1); // Inicializo la variable y parseo para obtener el entero
 
-  n2 = prompt("Introduce otro número entero: (No puede ser 0).");
-  if (isNaN(n2) || n2 === null || parseInt(n2) === 0) {
-    // Compruebo si no es un número O si el usuario ha pulsado cancelar o si no ha rellenado el campo
+  n2 = prompt(
+    "Introduce otro número entero:\n(No puede ser 0 si quieres dividirlo)."
+  );
+  if (isNaN(n2) || n2 === null || n1 === "") {
+    // Compruebo si no es un número ó si el usuario ha pulsado cancelar o si no ha rellenado el campo
 
     alert(fin);
     cancelar = true;

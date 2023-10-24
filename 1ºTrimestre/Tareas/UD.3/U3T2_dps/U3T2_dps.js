@@ -38,6 +38,7 @@ function Socio() {
     let dimensionLista = socios.length();
     let exito = false;
     let socio = new Socio();
+
     socio.numeroSocio = numeroSocio;
     socio.dni = dni;
     socio.nombre = nombre;
@@ -87,7 +88,6 @@ function Socio() {
    */
   this.modificarLocalidad = function (numeroSocio, dni, localidad) {
     let exito = false;
-
     let socio = this.buscar(numeroSocio, dni);
 
     if (socio != null) {
@@ -96,12 +96,12 @@ function Socio() {
       const nombreOriginal = socio.nombre;
       const apellidoOriginal = socio.apellido;
       const fechaNacimientoOriginal = socio.fechaNacimiento;
-
       const index = socios.indexOf(socio);
 
       socios.splice(index, 1);
 
       let nuevoSocio = new Socio();
+
       nuevoSocio.numeroSocio = numeroSocioOriginal;
       nuevoSocio.dni = dniOriginal;
       nuevoSocio.nombre = nombreOriginal;
@@ -110,7 +110,6 @@ function Socio() {
       nuevoSocio.localidad = localidad;
 
       socios.push(nuevoSocio);
-
       exito = true;
     } else {
       alert("No se encuentra al socio.");
@@ -122,13 +121,13 @@ function Socio() {
   this.buscar = function (numeroSocio, dni) {
     let existeSocio = null;
     socios.forEach(function (socio) {
-      if (socio.numeroSocio === numeroSocio && socio.dni === dni) {
+      if (socio.numeroSocio === numeroSocio && socio.dni === dni)
         existeSocio = socio;
-      }
     });
 
     return existeSocio;
   };
+
   this.categoria = function (fechaNacimiento) {
     let anho = parseInt(fechaNacimiento.slice(6, 10));
     let edad = 2023 - anho;
@@ -149,6 +148,7 @@ function Socio() {
     } else {
       mensaje = "Edad no clasificada en ninguna categoría.";
     }
+
     return mensaje;
   };
 
@@ -163,11 +163,14 @@ function Socio() {
         socioEncontrado = socio;
       }
     });
+
     return socioEncontrado;
   };
+
   this.sociosCategoria = function (categoria) {
     let lista = [];
     let anhoFiltro;
+
     switch (categoria.toLowerCase()) {
       case "senior":
         alert("Senior: Nacidos en 2004 o antes.");
@@ -200,7 +203,6 @@ function Socio() {
 
     socios.forEach(function (socio) {
       const fechaNacimiento = socio.fechaNacimiento;
-
       const anioNacimiento = parseInt(fechaNacimiento.split("/")[2]);
 
       if (anioNacimiento === anhoFiltro) {
@@ -213,6 +215,7 @@ function Socio() {
 
   this.sociosLocalidad = function (localidad) {
     let lista = [];
+
     socios.forEach(function (socio) {
       if (socio.localidad === localidad) {
         lista.push(socio);
@@ -220,6 +223,7 @@ function Socio() {
         alert("ERROR. -No hay ningún socio de esa localidad.");
       }
     });
+
     return lista;
   };
 }

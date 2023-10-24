@@ -51,16 +51,16 @@ while (!cancelar) {
 
   respuesta = prompt(
     "Escoge la operación que deseas realizar: \n" + // Almacena que operación desea hacer el usuario
-      opc1 + // Sumar
-      "\n" +
-      opc2 + // Restar
-      "\n" +
-      opc3 + // Multiplicar
-      "\n" +
-      opc4 // Dividir
+    opc1 + // Sumar
+    "\n" +
+    opc2 + // Restar
+    "\n" +
+    opc3 + // Multiplicar
+    "\n" +
+    opc4 // Dividir
   );
 
-  if (isNaN(respuesta) || respuesta === null) {
+  if (isNaN(respuesta) || respuesta === null || respuesta === "") {
     // Compruebo si la respuesta no es un número o si ha pulsado cancelar o si no ha rellenado el campo
 
     alert(fin);
@@ -71,11 +71,11 @@ while (!cancelar) {
   let opc = parseInt(respuesta); // Parseo la respuesta para obtener el entero en una nueva variable 'opc'
 
   switch (
-    opc // Según la opcion 1-4, hará una de las 4 funciones, si el número no es válido terminará el programa.
+  opc // Según la opcion 1-4, hará una de las 4 funciones, si el número no es válido terminará el programa.
   ) {
     case 1:
       resultado = sumar(a, b);
-      document.write("<p> El resultado de la suma es: " + resultado + " </p>");
+      document.write("<p> El resultado de la suma es: <h4>" + resultado + "</h4></p>");
       document.write("<p> " + fin + " </p>");
       cancelar = true;
 
@@ -83,7 +83,7 @@ while (!cancelar) {
 
     case 2:
       resultado = restar(a, b);
-      document.write("<p> El resultado de la resta es: " + resultado + " </p>");
+      document.write("<p> El resultado de la resta es: <h4>" + resultado + "</h4></p>");
       document.write("<p> " + fin + " </p>");
       cancelar = true;
 
@@ -92,7 +92,7 @@ while (!cancelar) {
     case 3:
       resultado = multiplicar(a, b);
       document.write(
-        "<p> El resultado de la multiplicacion es: " + resultado + " </p>"
+        "<p> El resultado de la multiplicacion es: <h4>" + resultado + "</h4></p>"
       );
       document.write("<p> " + fin + " </p>");
       cancelar = true;
@@ -102,7 +102,7 @@ while (!cancelar) {
     case 4:
       resultado = dividir(a, b);
       document.write(
-        "<p> El resultado de la division es: " + resultado + " </p>"
+        "<p> El resultado de la division es: <h4>" + resultado + "</h4></p>"
       );
       document.write("<p> " + fin + " </p>");
       cancelar = true;

@@ -54,12 +54,7 @@ let cancelar = false; // Bandera que hace que el programa se ejecute infinitamen
 let socio = new Socio(); // Instancio el objeto de socio para traer todos los métodos.
 let continuar = ""; // Alamcena el valor que determina si acaba el programa o continua.
 
-/**
- *
- * Declaración de objeto Socio
- * Tiene las siguientes variable: numeroSocio, dni, nombre, apellido
- * fecha de nacimiento y localidad.
- */
+// Objeto socio
 function Socio() {
   this.numeroSocio = "";
   this.dni = "";
@@ -71,19 +66,7 @@ function Socio() {
   let dimensionLista;
   let contadorSocios = 1;
 
-  /**
-   * Método para dar de alta al un nuevo socio
-   *
-   * @param {string} numeroSocio // Numero de socio
-   * @param {string} dni // DNI del socio
-   * @param {string} nombre // Nombre del socio
-   * @param {string} apellido // Apellido del socio
-   * @param {string} fechaNacimiento // Fecha de nacimiento del socio
-   * @param {string} localidad // Localidad del socio
-   * @param {int} dimensionLista // Almacena la dimesion del array
-   * @param {int} nuevaDimension // Almacena el valor de la dimesion del array con el socio añadido
-   * @returns {boolean} exito Devuelve true si se ha añadido correctamente y false si no se ha añadido.
-   */
+  // Método para dar de alta al un nuevo socio
   this.alta = function (dni, nombre, apellido, fechaNacimiento, localidad) {
     let exito = false;
     let socio = new Socio();
@@ -103,9 +86,9 @@ function Socio() {
       exito = true;
       contadorSocios++;
     }
-    return exito;
+    return exito; // Devueve true o false dependiendo si se ha añadido o no.
   };
-
+  // Método para dar de baja al un nuevo socio
   this.baja = function (dato) {
     let exito = false;
 
@@ -117,18 +100,10 @@ function Socio() {
       exito = true;
     }
 
-    return exito;
+    return exito; // Devueve true o false dependiendo si se ha eliminado o no.
   };
 
-  /**
-   * Métpdo para modificar la localidad de un Socio.
-   *
-   * @param {String} numeroSocio // Numero de sociodel socio.
-   * @param {String} dni // Dni del socio.
-   * @param {String} localidad // La localidad que a la que se desea cambiar.
-   * @param {Socio} socio // Almacena el objeto socio del que se modifica la localidad.
-   * @returns {boolean} exito - Devuelve true si se ha modificado la localidad correctamente y false en caso contrario.
-   */
+  //  Métopdo para modificar la localidad de un Socio.
   this.modificarLocalidad = function (dato, localidad) {
     let exito = false;
     let socio = this.buscar(dato);
@@ -155,119 +130,118 @@ function Socio() {
       socios.push(nuevoSocio);
       exito = true;
     }
-    return exito;
-  };
-
-  this.buscar = function (dato) {
-    let existeSocio = new Socio();
-
-    socios.forEach(function (socio) {
-      if (socio.numeroSocio === dato || socio.dni === dato) existeSocio = socio;
-    });
-
-    return existeSocio;
-  };
-
-  this.categoria = function (fechaNacimiento) {
-    let anho = parseInt(fechaNacimiento.slice(6, 10));
-    let edad = 2023 - anho;
-    let mensaje = "";
-
-    if (edad >= 19) {
-      mensaje = "Es Senior";
-    } else if (edad >= 16 && edad <= 18) {
-      mensaje = "Es Juvenil";
-    } else if (edad >= 14 && edad <= 15) {
-      mensaje = "Es Cadete";
-    } else if (edad >= 12 && edad <= 13) {
-      mensaje = "Es Infantil";
-    } else if (edad >= 10 && edad <= 11) {
-      mensaje = "Es Alevin";
-    } else if (edad >= 8 && edad <= 9) {
-      mensaje = "Es Benjamin";
-    } else {
-      mensaje = "Edad no clasificada en ninguna categoría.";
-    }
-
-    return mensaje;
-  };
-
-  this.mostrarDatos = function (dato) {
-    let socioEncontrado = null;
-
-    socios.forEach(function (socio) {
-      if (socio.dni === dato || socio.nombre + " " + socio.apellido === dato) {
-        socioEncontrado = socio;
-      }
-    });
-
-    return socioEncontrado;
-  };
-
-  this.sociosCategoria = function (categoria) {
-    let lista = [];
-    let anhoFiltro;
-
-    switch (categoria.toLowerCase()) {
-      case "senior":
-        alert("Senior: Nacidos en 2004 o antes.");
-        anhoFiltro = 2004;
-        break;
-
-      case "juvenil":
-        alert("Juvenil: Nacidos en 2005.");
-        anhoFiltro = 2005;
-        break;
-
-      case "cadetes":
-        alert("Cadetes: Nacidos en 2006");
-        anhoFiltro = 2006;
-        break;
-
-      case "infantil":
-        alert("Infantil: Nacidos en 2007.");
-        anhoFiltro = 2007;
-        break;
-
-      case "alevin":
-        alert("Alevín: Nacidos en 2008.");
-        anhoFiltro = 2008;
-        break;
-
-      case "benjamin":
-        alert("Benjamín: Nacidos en 2009.");
-        anhoFiltro = 2009;
-        break;
-
-      default:
-        alert("Valor no encontrado.");
-        break;
-    }
-
-    socios.forEach(function (socio) {
-      const fechaNacimiento = socio.fechaNacimiento;
-      const anioNacimiento = parseInt(fechaNacimiento.split("/")[2]);
-
-      if (anioNacimiento === anhoFiltro) lista.push(socio);
-    });
-
-    return lista;
-  };
-
-  this.sociosLocalidad = function (localidad) {
-    let lista = [];
-
-    socios.forEach(function (socio) {
-      if (socio.localidad === localidad) lista.push(socio);
-    });
-
-    return lista;
+    return exito; // Devueve true o false dependiendo si se ha modificado o no.
   };
 }
+
+// Metodo para buscar un socio en el Array de socio
+this.buscar = function (dato) {
+  let existeSocio = new Socio();
+
+  socios.forEach(function (socio) {
+    if (socio.numeroSocio === dato || socio.dni === dato) existeSocio = socio;
+  });
+
+  return existeSocio; // Devueve al socio.
+};
+// Metodo que recoge la fecha de nacimiento de un socio y le dice de que categoria es.
+this.categoria = function (fechaNacimiento) {
+  let anho = parseInt(fechaNacimiento.slice(6, 10)); // Coge los años de nacimiento
+  let edad = 2023 - anho; // Los resto al año actual para calcular su edad.
+  let mensaje = ""; // Almacenará la categoría a la que pertence
+
+  if (edad >= 19) {
+    mensaje = "Es Senior";
+  } else if (edad >= 16 && edad <= 18) {
+    mensaje = "Es Juvenil";
+  } else if (edad >= 14 && edad <= 15) {
+    mensaje = "Es Cadete";
+  } else if (edad >= 12 && edad <= 13) {
+    mensaje = "Es Infantil";
+  } else if (edad >= 10 && edad <= 11) {
+    mensaje = "Es Alevin";
+  } else if (edad >= 8 && edad <= 9) {
+    mensaje = "Es Benjamin";
+  } else {
+    mensaje = "Edad no clasificada en ninguna categoría.";
+  }
+
+  return mensaje; // Devueve la categoria.
+};
+
+// Metodo que busca a un socio por dni o nombre y lo deuelve si existe
+this.mostrarDatos = function (dato) {
+  let socioEncontrado = null;
+
+  socios.forEach(function (socio) {
+    if (socio.dni === dato || socio.nombre + " " + socio.apellido === dato) {
+      socioEncontrado = socio;
+    }
+  });
+
+  return socioEncontrado;
+};
+
+// Metodo que muestra todos los socios de una categoría
+this.sociosCategoria = function (categoria) {
+  let lista = [];
+  let anhoFiltro;
+
+  switch (categoria.toLowerCase()) {
+    case "senior":
+      alert("Senior: Nacidos en 2004 o antes.");
+      anhoFiltro = 2004;
+      break;
+
+    case "juvenil":
+      alert("Juvenil: Nacidos en 2005.");
+      anhoFiltro = 2005;
+      break;
+
+    case "cadetes":
+      alert("Cadetes: Nacidos en 2006");
+      anhoFiltro = 2006;
+      break;
+
+    case "infantil":
+      alert("Infantil: Nacidos en 2007.");
+      anhoFiltro = 2007;
+      break;
+
+    case "alevin":
+      alert("Alevín: Nacidos en 2008.");
+      anhoFiltro = 2008;
+      break;
+
+    case "benjamin":
+      alert("Benjamín: Nacidos en 2009.");
+      anhoFiltro = 2009;
+      break;
+
+    default:
+      alert("Valor no encontrado.");
+      break;
+  }
+
+  socios.forEach(function (socio) {
+    const fechaNacimiento = socio.fechaNacimiento;
+    const anioNacimiento = parseInt(fechaNacimiento.split("/")[2]);
+
+    if (anioNacimiento === anhoFiltro) lista.push(socio);
+  });
+
+  return lista; // Devueve la lista con los socios que son de la misma categoria.
+};
+
+// Metodo que muestra todos los socios de una misma localidad.
+this.sociosLocalidad = function (localidad) {
+  return socios.filter((socio) => socio.localidad === localidad); // Devuelve todos los socios de la localidad.
+};
 
 // LOGICA
 
 while (!cancelar) {
+  // Ventana con la lista de opciones
   respuesta = parseInt(
     prompt(
       "Pulsa:\n " +
@@ -289,6 +263,7 @@ while (!cancelar) {
     )
   );
 
+  // Segun que la opción que haya elegido ejecuta un case, en caso de no ser ninguno sale de switch y vuele a ejecutarse.
   switch (respuesta) {
     // ALTA
     case 1:

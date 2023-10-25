@@ -47,7 +47,7 @@ const FIN_TABLA = "</tbody></table>";
 let socios = []; // Este array almacenará los objetos de tipo Socio.
 let respuesta = ""; // Alamcena la respuesta del usuario según la opción que desee.
 let cancelar = false; // Bandera que hace que el programa se ejecute infinitamente hasta que su valor es = 'true'.
-let socio = new Socio(); // Inicializo el objeto de socio para traer todos los métodos.
+let socio = new Socio(); // Instancio el objeto de socio para traer todos los métodos.
 let continuar = ""; // Alamcena el valor que determina si acaba el programa o continua. 
 
 
@@ -65,7 +65,7 @@ function Socio() {
   this.fechaNacimiento = "";
   this.localidad = "";
 
-
+  let dimensionLista;
   let contadorSocios = 1;
 
   /**
@@ -88,7 +88,6 @@ function Socio() {
     fechaNacimiento,
     localidad
   ) {
-    let dimensionLista = socios.length;
     let exito = false;
     let socio = new Socio();
 
@@ -98,6 +97,8 @@ function Socio() {
     socio.apellido = apellido;
     socio.fechaNacimiento = fechaNacimiento;
     socio.localidad = localidad.toLowerCase();
+
+    dimensionLista = socios.length;
 
     let nuevaDimension = socios.push(socio); // Declaro y añado al socio e inicializo la nueva variable con lo que retorna el método push().
 
@@ -287,7 +288,7 @@ function Socio() {
 
 while (!cancelar) {
 
-  respuesta = parseInt(prompt("Pulsa: \n " + OPC1 + "\n" + OPC2 + "\n" + OPC3 + "\n" + OPC4 + "\n" + OPC5 + "\n" + OPC6 + "\n" + OPC7 + "\n" + OPC8));
+  respuesta = parseInt(prompt("Pulsa:\n " + OPC1 + "\n" + OPC2 + "\n" + OPC3 + "\n" + OPC4 + "\n" + OPC5 + "\n" + OPC6 + "\n" + OPC7 + "\n" + OPC8));
 
 
   switch (respuesta) {

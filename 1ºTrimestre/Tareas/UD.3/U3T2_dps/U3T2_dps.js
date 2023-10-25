@@ -85,9 +85,9 @@ while (!cancelar) {
     case 3:
 
       let dato3 = prompt(NUMS_DNI);
-      let localidad3 = promt(NEW_LOCALIDAD);
+      let localidad3 = prompt(NEW_LOCALIDAD);
 
-      if (socio.modificarLocalidad(dato, localidad3)) {
+      if (socio.modificarLocalidad(dato3, localidad3)) {
         document.write(EXITO_MODF_LOCL);
       } else {
         document.write(ERROR);
@@ -96,7 +96,7 @@ while (!cancelar) {
 
     case 4:
       let fecha = prompt(FECHA_NACIMIENTO);
-      let respueta = socio.categoria(fecha);
+      let respuesta = socio.categoria(fecha);
       if (respuesta != null && respuesta != "") {
         document.write("<p>" + mensaje + "</p>");
       } else {
@@ -145,11 +145,11 @@ while (!cancelar) {
       if (lista8.length > 1) {
         // hacer tabla
       } else {
-        document.write(error);
+        document.write(ERROR);
       }
       break;
     default:
-      document.write(error);
+      document.write(ERROR);
       break;
   }
 
@@ -169,6 +169,9 @@ function Socio() {
   this.apellido = "";
   this.fechaNacimiento = "";
   this.localidad = "";
+
+
+  let contadorSocios = 1;
 
   /**
    * Método para dar de alta al un nuevo socio
@@ -190,7 +193,6 @@ function Socio() {
     fechaNacimiento,
     localidad
   ) {
-    let contadorSocios = 1;
     let dimensionLista = socios.length;
     let exito = false;
     let socio = new Socio();
@@ -211,26 +213,17 @@ function Socio() {
     return exito;
   };
 
-  /**
-   * Métpdo para eliminar un socio.
-   *
-   * @param {String} numeroSocio // Numero de sociodel socio a eliminar.
-   * @param {String} dni // Dni del socio a eliminar.
-   * @param {Array} elemtoEliminado // Este array almacena el socio que se ha eliminado.
-   * @returns {boolean} exito - Devuelve true si se ha eliminado correctamente y false en caso contrario.
-   */
   this.baja = function (dato) {
     let exito = false;
-    // Busco en la lista el socio que tenga el @numeroSocio y @dni iguales.
-    socios.forEach((socio, index) => {
-      if (socio.numeroSocio === dato || socio.dni === dato) {
-        let elemtoEliminado = socios.splice(index, 1); // Si lo encuentro lo elimino.
-        if (elemtoEliminado.length === 1) {
-          // Si el array que devuelve tiene un elemento, se ha eliminado correctamente
-          exito = true;
-        }
-      }
+  
+    socios = socios.filter(function (socio) {
+      return socio.numeroSocio !== dato && socio.dni !== dato;
     });
+  
+    if (socios.length < dimensionLista) {
+      exito = true;
+    }
+  
     return exito;
   };
 

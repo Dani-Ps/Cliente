@@ -24,22 +24,26 @@ const APELLIDO = "Introduce el apellido:\n";
 const FECHA_NACIMIENTO = "Introduce tu fecha de nacimiento:\n";
 const LOCALIDAD = "Introduce la localidad:\n";
 
-// Para buscar: 
+// Para buscar:
 const NUMS_DNI = "Introduce el numero de socio o el dni del socio:\n";
 
 // Para cambiar la localidad
 const NEW_LOCALIDAD = "Introduce la nueva localidad:\n";
 
 // Para mostrar datos
-const DNI_NOMBRE = "Introduce el dni o el nombre completo de socio que deseas ver: \n";
+const DNI_NOMBRE =
+  "Introduce el dni o el nombre completo de socio que deseas ver: \n";
 
 // Para método de mostrar socios por categoria
-const SOCIOS_CATEGORIA = "Introduce la categoría de la que quieras ver los socios:";
+const SOCIOS_CATEGORIA =
+  "Introduce la categoría de la que quieras ver los socios:";
 
-// Primera fila con cada conlumna sin categoria 
-const TABLA_1 = "<table><thead><tr><th>Número de Socio</th><th>DNI</th><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th><th>Localidad</th></tr></thead><tbody>";
-// Primera fila con cada conlumna con categoria 
-const TABLA_2 = "<table><thead><tr><th>Número de Socio</th><th>DNI</th><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th><th>Localidad</th><th>Categoria</th></tr></thead><tbody>";
+// Primera fila con cada conlumna sin categoria
+const TABLA_1 =
+  "<table><thead><tr><th>Número de Socio</th><th>DNI</th><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th><th>Localidad</th></tr></thead><tbody>";
+// Primera fila con cada conlumna con categoria
+const TABLA_2 =
+  "<table><thead><tr><th>Número de Socio</th><th>DNI</th><th>Nombre</th><th>Apellido</th><th>Fecha de Nacimiento</th><th>Localidad</th><th>Categoria</th></tr></thead><tbody>";
 // Almacena el final de la tabla
 const FIN_TABLA = "</tbody></table>";
 // VARIABLES
@@ -48,8 +52,7 @@ let socios = []; // Este array almacenará los objetos de tipo Socio.
 let respuesta = ""; // Alamcena la respuesta del usuario según la opción que desee.
 let cancelar = false; // Bandera que hace que el programa se ejecute infinitamente hasta que su valor es = 'true'.
 let socio = new Socio(); // Instancio el objeto de socio para traer todos los métodos.
-let continuar = ""; // Alamcena el valor que determina si acaba el programa o continua. 
-
+let continuar = ""; // Alamcena el valor que determina si acaba el programa o continua.
 
 /**
  *
@@ -81,13 +84,7 @@ function Socio() {
    * @param {int} nuevaDimension // Almacena el valor de la dimesion del array con el socio añadido
    * @returns {boolean} exito Devuelve true si se ha añadido correctamente y false si no se ha añadido.
    */
-  this.alta = function (
-    dni,
-    nombre,
-    apellido,
-    fechaNacimiento,
-    localidad
-  ) {
+  this.alta = function (dni, nombre, apellido, fechaNacimiento, localidad) {
     let exito = false;
     let socio = new Socio();
 
@@ -162,21 +159,16 @@ function Socio() {
   };
 
   this.buscar = function (dato) {
-
     let existeSocio = new Socio();
 
     socios.forEach(function (socio) {
-
-      if (socio.numeroSocio === dato || socio.dni === dato)
-        existeSocio = socio;
-
+      if (socio.numeroSocio === dato || socio.dni === dato) existeSocio = socio;
     });
 
     return existeSocio;
   };
 
   this.categoria = function (fechaNacimiento) {
-
     let anho = parseInt(fechaNacimiento.slice(6, 10));
     let edad = 2023 - anho;
     let mensaje = "";
@@ -201,17 +193,12 @@ function Socio() {
   };
 
   this.mostrarDatos = function (dato) {
-
     let socioEncontrado = null;
 
     socios.forEach(function (socio) {
-      if (
-        socio.dni === dato ||
-        socio.nombre + " " + socio.apellido === dato
-      ) {
+      if (socio.dni === dato || socio.nombre + " " + socio.apellido === dato) {
         socioEncontrado = socio;
       }
-
     });
 
     return socioEncontrado;
@@ -222,7 +209,6 @@ function Socio() {
     let anhoFiltro;
 
     switch (categoria.toLowerCase()) {
-
       case "senior":
         alert("Senior: Nacidos en 2004 o antes.");
         anhoFiltro = 2004;
@@ -259,40 +245,51 @@ function Socio() {
     }
 
     socios.forEach(function (socio) {
-
       const fechaNacimiento = socio.fechaNacimiento;
       const anioNacimiento = parseInt(fechaNacimiento.split("/")[2]);
 
       if (anioNacimiento === anhoFiltro) lista.push(socio);
-
     });
 
     return lista;
   };
 
   this.sociosLocalidad = function (localidad) {
-
     let lista = [];
 
     socios.forEach(function (socio) {
-
       if (socio.localidad === localidad) lista.push(socio);
-
     });
 
     return lista;
   };
 }
 
-// LOGICA 
+// LOGICA
 
 while (!cancelar) {
-
-  respuesta = parseInt(prompt("Pulsa:\n " + OPC1 + "\n" + OPC2 + "\n" + OPC3 + "\n" + OPC4 + "\n" + OPC5 + "\n" + OPC6 + "\n" + OPC7 + "\n" + OPC8));
-
+  respuesta = parseInt(
+    prompt(
+      "Pulsa:\n " +
+        OPC1 +
+        "\n" +
+        OPC2 +
+        "\n" +
+        OPC3 +
+        "\n" +
+        OPC4 +
+        "\n" +
+        OPC5 +
+        "\n" +
+        OPC6 +
+        "\n" +
+        OPC7 +
+        "\n" +
+        OPC8
+    )
+  );
 
   switch (respuesta) {
-
     // ALTA
     case 1:
       // Pregunto por los datos del nuevo socio
@@ -303,23 +300,17 @@ while (!cancelar) {
       let localidad = prompt(LOCALIDAD);
       // Doy de alta y compruebo si se ha añadido correctsamente, es asi manda un mensaje de exito, en caso contrario manda un mensaje de error.
       if (socio.alta(dni, nombre, apellido, fechaNacimiento, localidad)) {
-
-        document.write(
-          EXITO_ALTA
-        );
-
+        document.write(EXITO_ALTA);
       } else {
-        document.write(
-          ERROR
-        );
+        document.write(ERROR);
       }
       break;
     // BAJA
     case 2:
-
       let dato = prompt(NUMS_DNI); // Almacena la variable que identifica al socio.
 
-      if (socio.baja(dato)) { // Ejecuto el metodo de dar de baja, y compruebo si se ha eliminado.
+      if (socio.baja(dato)) {
+        // Ejecuto el metodo de dar de baja, y compruebo si se ha eliminado.
         document.write(EXITO_BAJA); // Si se ha eliminado manda un mensaje de exito, del contrario manda un mensaje de error.
       } else {
         document.write(ERROR);
@@ -328,11 +319,11 @@ while (!cancelar) {
 
     // MODIFICAR LOCALIDAD
     case 3:
-
-      let dato3 = prompt(NUMS_DNI); // Almacena la variable que identifica al socio. 
+      let dato3 = prompt(NUMS_DNI); // Almacena la variable que identifica al socio.
       let localidad3 = prompt(NEW_LOCALIDAD); // Almacena la nueva localidad.
 
-      if (socio.modificarLocalidad(dato3, localidad3)) { // Ejecuto el método de cambio de localidad y compruebo si el cambio se ha hecho.
+      if (socio.modificarLocalidad(dato3, localidad3)) {
+        // Ejecuto el método de cambio de localidad y compruebo si el cambio se ha hecho.
         document.write(EXITO_MODF_LOCL); // Si se ha realizado correctamente, me salta un mensaje de exito sino uno de error.
       } else {
         document.write(ERROR);
@@ -341,7 +332,6 @@ while (!cancelar) {
 
     // VER CATEGORIA
     case 4:
-
       let fecha = prompt(FECHA_NACIMIENTO);
       let respuesta = socio.categoria(fecha);
 
@@ -353,13 +343,10 @@ while (!cancelar) {
       break;
 
     case 5:
-
       let lista5 = socio.socios;
 
       if (lista5.length > 1) {
-
         document.write(TABLA_2);
- 
 
         for (let i = 0; i < lista5.length; i++) {
           document.write("<tr>");
@@ -375,7 +362,7 @@ while (!cancelar) {
         }
 
         document.write(FIN_TABLA);
-   
+
         cancelar = true;
       } else {
         document.write(ERROR);
@@ -383,12 +370,10 @@ while (!cancelar) {
       break;
 
     case 6:
-
       let dato6 = prompt(DNI_NOMBRE);
-      let socio6 = (socio.mostrarDatos(dato6));
+      let socio6 = socio.mostrarDatos(dato6);
 
       if (socio6.length > 1) {
-
         document.write(TABLA_1);
 
         for (let i = 0; i < socio6.length; i++) {
@@ -411,12 +396,10 @@ while (!cancelar) {
       break;
 
     case 7:
-
       let categoria = prompt(SOCIOS_CATEGORIA);
       let lista7 = socio.sociosCategoria(categoria);
       if (lista7.length > 1) {
         document.write(TABLA_1);
-     
 
         for (let i = 0; i < lista7.length; i++) {
           document.write("<tr>");
@@ -437,7 +420,6 @@ while (!cancelar) {
       break;
 
     case 8:
-
       let localiad = prompt(LOCALIDAD);
       let lista8 = socio.sociosLocalidad(localiad);
       if (lista8.length > 1) {
@@ -463,8 +445,4 @@ while (!cancelar) {
       document.write(ERROR);
       break;
   }
-  
 }
-
-
-

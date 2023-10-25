@@ -1,5 +1,161 @@
-// Variables
-let socios = []; // Este array almacenará los objetos de tipo Socio
+// CONSTANTES
+
+// Opciones para el control de Socio:
+const OPC1 = "1. Alta de un nuevo socio:";
+const OPC2 = "2. Baja de un socio:";
+const OPC3 = "3. Modificar la  localidad de un socio:";
+const OPC4 = "4. Ver categoría del socio:";
+const OPC5 = "5. Mostrar todos los datos:";
+const OPC6 = "6. Buscar socio:";
+const OPC7 = "7. Ver socios de una categoría:";
+const OPC8 = "8. Ver socios de una localidad:";
+
+// Mensajes de fin, error y exito.
+const FIN = "Fin del programa.";
+const ERROR = "<p>ERROR. -Vuelve a intentalo.</p>";
+const EXITO_ALTA = "<p> Se ha añadido correctamente el socio</p>";
+const EXITO_BAJA = "<p>Se ha eliminado correctamente el socio</p>";
+const EXITO_MODF_LOCL = "<p>Se ha modificado correctamente la localidad</p>";
+
+// Para alta:
+const DNI = "Introduce el DNI:\n";
+const NOMBRE = "Introduce el nombre:\n";
+const APELLIDO = "Introduce el apellido:\n";
+const FECHA_NACIMIENTO = "Introduce tu fecha de nacimiento:\n";
+const LOCALIDAD = "Introduce la localidad:\n";
+
+// Para buscar: 
+const NUMS_DNI = "Introduce el numero de socio o el dni del socio:\n";
+
+// Para cambiar la localidad
+const NEW_LOCALIDAD = "Introduce la nueva localidad:\n";
+
+// Para mostrar datos
+const DNI_NOMBRE = "Introduce el dni o el nombre completo de socio que deseas ver: \n";
+
+// Para método de mostrar socios por categoria
+const SOCIOS_CATEGORIA = "Introduce la categoría de la que quieras ver los socios:";
+
+// VARIABLES
+
+let socios = []; // Este array almacenará los objetos de tipo Socio.
+let respuesta = ""; // Alamcena la respuesta del usuario según la opción que desee.
+let cancelar = false; // Bandera que hace que el programa se ejecute infinitamente hasta que su valor es = 'true'.
+let socio = new Socio(); // Inicializo el objeto de socio para traer todos los métodos.
+
+// LOGICA 
+
+while (!cancelar) {
+
+  respuesta = parseInt(prompt("Pulsa \n:" + OPC1 + "\n" + OPC2 + "\n" + OPC3 + "\n" + OPC4 + "\n" + OPC5 + "\n" + OPC6 + "\n" + OPC7 + "\n" + OPC8));
+  switch (respuesta) {
+
+    case 1:
+
+      let dni = prompt(DNI);
+      let nombre = prompt(NOMBRE);
+      let apellido = prompt(APELLIDO);
+      let fechaNacimiento = prompt(FECHA_NACIMIENTO);
+      let localidad = prompt(LOCALIDAD);
+
+      if (socio.alta(dni, nombre, apellido, fechaNacimiento, localidad)) {
+
+        document.write(
+          EXITO_ALTA
+        );
+
+      } else {
+        document.write(
+          ERROR
+        );
+      }
+      break;
+
+    case 2:
+
+      let dato = prompt(NUMS_DNI);
+
+      if (socio.baja(dato)) {
+        document.write(EXITO_BAJA);
+      } else {
+        document.write(ERROR);
+      }
+      break;
+
+    case 3:
+
+      let dato3 = prompt(NUMS_DNI);
+      let localidad3 = promt(NEW_LOCALIDAD);
+
+      if (socio.modificarLocalidad(dato, localidad3)) {
+        document.write(EXITO_MODF_LOCL);
+      } else {
+        document.write(ERROR);
+      }
+      break;
+
+    case 4:
+      let fecha = prompt(FECHA_NACIMIENTO);
+      let respueta = socio.categoria(fecha);
+      if (respuesta != null && respuesta != "") {
+        document.write("<p>" + mensaje + "</p>");
+      } else {
+        document.write(ERROR);
+      }
+      break;
+    case 5:
+
+      let lista5 = socio.socios;
+
+      if (lista5.length > 1) {
+        // hacer tabla
+      } else {
+        document.write(ERROR);
+      }
+      break;
+
+    case 6:
+
+      let dato6 = prompt(DNI_NOMBRE);
+      let socio6 = (socio.mostrarDatos(dato6));
+
+      if (socio6.length > 1) {
+        // hacer tabla
+      } else {
+        document.write(ERROR);
+      }
+
+      break;
+
+    case 7:
+      
+      let categoria = prompt(SOCIOS_CATEGORIA);
+      let lista7 = socio.sociosCategoria(categoria);
+      if (lista7.length > 1) {
+        // hacer tabla
+      } else {
+        document.write(ERROR);
+      }
+      break;
+
+    case 8:
+
+      let localiad = prompt(LOCALIDAD);
+      let lista8 = socio.sociosLocalidad(localiad);
+      if (lista8.length > 1) {
+        // hacer tabla
+      } else {
+        document.write(error);
+      }
+      break;
+    default:
+      document.write(error);
+      break;
+  }
+
+
+}
+
 /**
  *
  * Declaración de objeto Socio
@@ -28,18 +184,18 @@ function Socio() {
    * @returns {boolean} exito Devuelve true si se ha añadido correctamente y false si no se ha añadido.
    */
   this.alta = function (
-    numeroSocio,
     dni,
     nombre,
     apellido,
     fechaNacimiento,
     localidad
   ) {
-    let dimensionLista = socios.length();
+    let contadorSocios = 1;
+    let dimensionLista = socios.length;
     let exito = false;
     let socio = new Socio();
 
-    socio.numeroSocio = numeroSocio;
+    socio.numeroSocio = contadorSocios;
     socio.dni = dni;
     socio.nombre = nombre;
     socio.apellido = apellido;
@@ -50,6 +206,7 @@ function Socio() {
 
     if (nuevaDimension > dimensionLista) {
       exito = true;
+      contadorSocios++;
     }
     return exito;
   };
@@ -62,11 +219,11 @@ function Socio() {
    * @param {Array} elemtoEliminado // Este array almacena el socio que se ha eliminado.
    * @returns {boolean} exito - Devuelve true si se ha eliminado correctamente y false en caso contrario.
    */
-  this.baja = function (numeroSocio, dni) {
+  this.baja = function (dato) {
     let exito = false;
     // Busco en la lista el socio que tenga el @numeroSocio y @dni iguales.
     socios.forEach((socio, index) => {
-      if (socio.numeroSocio === numeroSocio && socio.dni === dni) {
+      if (socio.numeroSocio === dato || socio.dni === dato) {
         let elemtoEliminado = socios.splice(index, 1); // Si lo encuentro lo elimino.
         if (elemtoEliminado.length === 1) {
           // Si el array que devuelve tiene un elemento, se ha eliminado correctamente
@@ -86,9 +243,9 @@ function Socio() {
    * @param {Socio} socio // Almacena el objeto socio del que se modifica la localidad.
    * @returns {boolean} exito - Devuelve true si se ha modificado la localidad correctamente y false en caso contrario.
    */
-  this.modificarLocalidad = function (numeroSocio, dni, localidad) {
+  this.modificarLocalidad = function (dato, localidad) {
     let exito = false;
-    let socio = this.buscar(numeroSocio, dni);
+    let socio = this.buscar(dato);
 
     if (socio != null) {
       const numeroSocioOriginal = socio.numeroSocio;
@@ -111,17 +268,14 @@ function Socio() {
 
       socios.push(nuevoSocio);
       exito = true;
-    } else {
-      alert("No se encuentra al socio.");
     }
-
     return exito;
   };
 
-  this.buscar = function (numeroSocio, dni) {
+  this.buscar = function (dato) {
     let existeSocio = null;
     socios.forEach(function (socio) {
-      if (socio.numeroSocio === numeroSocio && socio.dni === dni)
+      if (socio.numeroSocio === dato || socio.dni === dato)
         existeSocio = socio;
     });
 
@@ -152,13 +306,12 @@ function Socio() {
     return mensaje;
   };
 
-  this.mostrarDatos = function (dni, nombre, apellido) {
+  this.mostrarDatos = function (dato) {
     let socioEncontrado = null;
     socios.forEach(function (socio) {
       if (
-        socio.dni === dni &&
-        socio.nombre === nombre &&
-        socio.apellido === apellido
+        socio.dni === dato ||
+        socio.nombre + " " + socio.apellido === dato
       ) {
         socioEncontrado = socio;
       }
@@ -227,3 +380,5 @@ function Socio() {
     return lista;
   };
 }
+
+

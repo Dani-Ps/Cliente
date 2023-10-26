@@ -1,0 +1,9 @@
+COMENTARIOS SOBRE LA TAREA DE VENTANAS: U3T3_dps
+
+¿Ha funcionado correctamente todo lo que has programado? 
+    No ha funcionado todo correctamente, concretamente el método de aumentar el tamaño de la venta, al principio usé el método de resizeTo(), sin embargo este método no aumneta el tamaño sino que redimensiona la ventana al tamaño que le especifiquemos cosa que no es la que se pide.
+    Luego utilicé el método de resizeBy(), este método tiene en cuenta el tamaño actuial y redimensiona a partir del mismo, sin embargo no me funciona.
+
+¿Qué crees que ha podido pasar? 
+    Lo que pienso que ha pasado es que al definir las especificaciones de la ventana, especificamos que esta no sea redimensionable, por tanto no funciona el método.
+    Por otro lado, si se usa la propiedad onClick para el botón si funciona el metodo de aumentar el tamaño pese al atributo de que no es redimensionable.

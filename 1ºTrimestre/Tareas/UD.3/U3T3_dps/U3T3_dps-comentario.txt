@@ -6,4 +6,3 @@ COMENTARIOS SOBRE LA TAREA DE VENTANAS: U3T3_dps
 
 ¿Qué crees que ha podido pasar? 
     Lo que pienso que ha pasado es que al definir las especificaciones de la ventana, especificamos que esta no sea redimensionable, por tanto no funciona el método.
-    Por otro lado, si se usa la propiedad onClick para el botón si funciona el metodo de aumentar el tamaño pese al atributo de que no es redimensionable.

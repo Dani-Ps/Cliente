@@ -9,9 +9,9 @@ document.getElementById("abrirVentana").addEventListener("click", function () {
   if (confirm("¿Estás de acuerdo en abrir una nueva ventana?")) {
     // Lanzo mensaje de confirmacion, si acepta crea la ventana
     ventana = window.open(
-      "",
-      "",
-      "toolbar=no, location=no, menubar=no, resizable=no, width=200, height=80, top=500, left=500"
+      "", // URL vacio
+      "", // NOMBRE vacio
+      "toolbar=no, location=no, menubar=no, resizable=no, width=200, height=80, top=500, left=500" // Propiedades de la ventana
     );
     ventana.document.write("<p>Esta es una nueva ventana</p>");
     ventana.document.write(

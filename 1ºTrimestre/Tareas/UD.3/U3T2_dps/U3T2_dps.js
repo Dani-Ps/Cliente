@@ -273,12 +273,14 @@ function preguntarAccion() {
   if (respuesta.includes("n")) {
     cancelar = true;
   } else if (respuesta.includes("s")) {
-    cancelar = true;
+    cancelar = false;
   } else {
     alert("Responda 's' para sí o 'n' para no");
     preguntarAccion();
   }
 }
+
+
 
 // LOGICA
 while (!cancelar) {
@@ -339,13 +341,16 @@ while (!cancelar) {
       break;
 
     case 5:
+
       let lista5 = socio.socios;
 
-      if (lista5 && lista5.length > 0) {
+      //if (lista5 && lista5.length > 0) {
         let tabla = document.getElementById("tabla-socios");
         tabla.innerHTML = ""; // Elimina los datos de la tabla si es que lo hubiera
 
         let tablaHTML = TABLA_2;
+
+        document.write(tablaHTML)
 
         for (let i = 0; i < lista5.length; i++) {
           tablaHTML += "<tr>";
@@ -361,11 +366,13 @@ while (!cancelar) {
         }
 
         tablaHTML += FIN_TABLA;
+        
         tabla.innerHTML = tablaHTML;
-      } else {
+        document.write(tabla.innerHTML)
+      //} else {
         // Mostrar mensaje de error
-        document.write(ERROR);
-      }
+       // document.write(ERROR);
+      //}
 
       break;
 

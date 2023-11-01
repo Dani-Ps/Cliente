@@ -12,10 +12,10 @@ function procesarCadena() {
       const email = partes[3];
       const servidorEmail = obtenerServidorEmail(email);
 
-      document.write(`<p>Código Postal: ${codigoPostal}</p>`);
-      document.write(`<p>Apellidos: ${apellidos}</p>`);
-      document.write(`<p>Email: ${email}</p>`);
-      document.write(`<p>Servidor de Email: ${servidorEmail}</p>`);
+      document.write("<p>Código Postal: " + codigoPostal + "</p>");
+      document.write("<p>Apellidos: " + apellidos + "</p>");
+      document.write("<p>Email: " + email + "</p>");
+      document.write("<p>Servidor de Email: " + servidorEmail + "</p>");
     } else {
       document.write(
         "<p>Error: La cadena debe tener exactamente 5 partes separadas por ':'.</p>"

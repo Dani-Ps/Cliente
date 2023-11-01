@@ -76,14 +76,14 @@ function sacaNumeroNuevo() {
 function mostrarCarton() {
   document.write('<div id="carton">');
   for (let i = 0; i < carton.length; i++) {
-    document.write(`Fila ${i + 1}: ${carton[i].join(" | ")}<br>`);
+    document.write("Fila " + (i + 1) + ": " + carton[i].join(" | ") + "<br>");
   }
   document.write("</div>");
 }
 
 function mostrarNumerosSalidos() {
   document.write('<div id="numeros-salidos">');
-  document.write(`Números que han salido: ${numSalidos.join(", ")}`);
+  document.write("Números que han salido: " + numSalidos.join(", ") + "<br>");
   document.write("</div>");
 }
 
@@ -94,7 +94,9 @@ function mostrarResultado() {
   if (bingoCantado) {
     document.write('<div id="resultado">¡BINGO!</div>');
   } else if (lineaCantada !== -1) {
-    document.write(`<div id="resultado">Línea ${lineaCantada} cantada</div>`);
+    document.write(
+      '<div id="resultado">Línea ' + lineaCantada + " cantada</div>"
+    );
   } else {
     document.write(
       '<div id="resultado">No ha obtenido ningún resultado aún</div>'

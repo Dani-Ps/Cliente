@@ -33,7 +33,7 @@ const Runner = {
     const partesHora = horaStr.split(":");
     if (partesHora.length !== 3) {
       alert("Formato de hora incorrecto. Se utilizará 00:00:00.");
-      return new Date("1970-01-01T00:00:00");
+      return null; // Devuelve null si el formato de hora es incorrecto
     }
     const hora = parseInt(partesHora[0]);
     const minutos = parseInt(partesHora[1]);
@@ -51,7 +51,7 @@ const Runner = {
       segundos > 59
     ) {
       alert("Hora no válida. Se utilizará 00:00:00.");
-      return new Date("1970-01-01T00:00:00");
+      return null; // Devuelve null si la hora no es válida
     }
 
     return new Date(1970, 0, 1, hora, minutos, segundos);
@@ -77,15 +77,16 @@ const Runner = {
       const segundosAjustados = segundos % 60;
 
       // Formatea la marca en hh:mm:ss
-      const marca = `${String(horas).padStart(2, "0")}:${String(
-        minutosAjustados
-      ).padStart(2, "0")}:${String(segundosAjustados).padStart(2, "0")}`;
+      const marca =
+        (horas < 10 ? "0" : "") + horas + ":" +
+        (minutosAjustados < 10 ? "0" : "") + minutosAjustados + ":" +
+        (segundosAjustados < 10 ? "0" : "") + segundosAjustados;
 
       return marca;
     } else {
       return "00:00:00"; // Devuelve 00:00:00 si falta información de inicio o finalización
     }
-  },
+  }
 };
 
 // Solicitar datos al usuario
@@ -98,9 +99,9 @@ document.write(`<p>Evento: ${Runner.Evento}</p>`);
 document.write(`<p>Fecha: ${Runner.Fecha.toDateString()}</p>`);
 document.write(`<p>Dorsal: ${Runner.Dorsal}</p>`);
 document.write(
-  `<p>Hora de Inicio: ${Runner.HoraInicio.toLocaleTimeString()}</p>`
+  `<p>Hora de Inicio: ${Runner.HoraInicio ? Runner.HoraInicio.toLocaleTimeString() : 'No especificada'}</p>`
 );
 document.write(
-  `<p>Hora de Finalización: ${Runner.HoraFinalizacion.toLocaleTimeString()}</p>`
+  `<p>Hora de Finalización: ${Runner.HoraFinalizacion ? Runner.HoraFinalizacion.toLocaleTimeString() : 'No especificada'}</p>`
 );
 document.write(`<p>Marca: ${Runner.calcularMarca()}</p>`);

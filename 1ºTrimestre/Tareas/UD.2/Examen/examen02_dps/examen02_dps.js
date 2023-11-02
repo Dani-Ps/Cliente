@@ -5,9 +5,6 @@ const MAX_INTENTOS = 5; // Variable que almacena el número máximo de intentos
 let cancelar = false; // Variable que hace que el programa se ejecute infinitamente mientras el valor es igual a 'false'.
 let intentos = 0; // Variable que almacenará el numero de intentos.
 
-
-
-
 while (!cancelar) {
 
     // Comprueba cuántos intentos lleva, si lleva ya 5 termina el programa, en caso contrario le vuelve a preguntar el año.

@@ -4,25 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Escuela de Tenis</title>
 </head>
 
 <body>
     <h1>Escuela de Tenis</h1>
 
+    <!-- Mostrar la lista de socios -->
+    <h2>Lista de Socios</h2>
+    <div id="listaSocios"></div>
+    <!-- Formulario para dar de alta a un nuevo socio -->
     <h2>Alta de Socio</h2>
     <form id="altaSocioForm">
-        <label for="numeroSocio">Número de Socio:</label>
-        <input type="text" id="numeroSocio" required><br>
-
         <label for="dni">DNI:</label>
         <input type="text" id="dni" required><br>
 
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" required><br>
 
-        <label for="apellidos">Apellidos:</label>
-        <input type="text" id="apellidos" required><br>
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" required><br>
 
         <label for="fechaNacimiento">Fecha de Nacimiento:</label>
         <input type="date" id="fechaNacimiento" required><br>
@@ -30,61 +31,56 @@
         <label for="localidad">Localidad:</label>
         <input type="text" id="localidad" required><br>
 
-        <button type="submit">Dar de alta</button>
+        <button type="button" onclick="darAltaSocio()">Dar de Alta</button>
     </form>
-
-    <h2>Baja de Socio</h2>
+    <!-- Formulario para dar de baja a un nuevo socio -->
+    <h2>Dar de Baja a un Socio</h2>
     <form id="bajaSocioForm">
-        <label for="datoBaja">Número de Socio o DNI:</label>
-        <input type="text" id="datoBaja" required><br>
+        <label for="bajaDato">Número de Socio o DNI:</label>
+        <input type="text" id="bajaDato" required><br>
 
-        <button type="submit">Dar de baja</button>
+        <button type="button" onclick="darBajaSocio()">Dar de Baja</button>
+    </form>
+    <!-- Formulario para buscar un socio por DNI o nombre y apellidos -->
+    <h2>Buscar Socio</h2>
+    <form id="buscarSocioForm">
+        <label for="buscarDato">Buscar por DNI o Nombre y Apellidos:</label>
+        <input type="text" id="buscarDato" required><br>
+
+        <button type="button" onclick="buscarSocio()">Buscar Socio</button>
+    </form>
+    <!-- Formulario para buscar todos los socios de una categoría -->
+    <h2>Buscar Socios por Categoría</h2>
+    <form id="buscarCategoriaForm">
+        <label for="categoria">Categoría (ej. Senior, Juvenil, Cadete):</label>
+        <input type="text" id="categoria" required><br>
+
+        <button type="button" onclick="buscarSociosPorCategoria()">Buscar Socios</button>
     </form>
 
-    <h2>Modificar Localidad</h2>
+    <!-- Formulario para mostrar socios de una localidad -->
+    <h2>Mostrar Socios por Localidad</h2>
+    <form id="mostrarLocalidadForm">
+        <label for="localidad">Localidad:</label>
+        <input type="text" id="localidad" required><br>
+
+        <button type="button" onclick="mostrarSociosPorLocalidad()">Mostrar Socios</button>
+    </form>
+
+    <!-- Formulario para modificar la localidad de un socio -->
+    <h2>Modificar Localidad de un Socio</h2>
     <form id="modificarLocalidadForm">
-        <label for="numeroSocioMod">Número de Socio:</label>
-        <input type="text" id="numeroSocioMod" required><br>
+        <label for="modificarDato">Número de Socio o DNI:</label>
+        <input type="text" id="modificarDato" required><br>
 
         <label for="nuevaLocalidad">Nueva Localidad:</label>
         <input type="text" id="nuevaLocalidad" required><br>
 
-        <button type="submit">Modificar localidad</button>
+        <button type="button" onclick="modificarLocalidadSocio()">Modificar Localidad</button>
     </form>
 
-    <h2>Filtrar por Categoría</h2>
-    <form id="filtrarCategoriaForm">
-        <label for="categoriaFiltro">Categoría:</label>
-        <select id="categoriaFiltro" required>
-            <option value="Senior">Senior</option>
-            <option value="Juvenil">Juvenil</option>
-            <option value="Cadetes">Cadetes</option>
-            <option value="Infantil">Infantil</option>
-            <option value="Alevín">Alevín</option>
-            <option value="Benjamín">Benjamín</option>
-        </select><br>
 
-        <button type="submit">Filtrar socios</button>
-    </form>
 
-    <h2>Buscar Socio</h2>
-    <form id="buscarSocioForm">
-        <label for="parametroBusqueda">DNI o Nombre y Apellidos:</label>
-        <input type="text" id="parametroBusqueda" required><br>
-
-        <button type="submit">Buscar socio</button>
-    </form>
-
-    <h2>Socios por Localidad</h2>
-    <form id="sociosPorLocalidadForm">
-        <label for="localidadFiltro">Localidad:</label>
-        <input type="text" id="localidadFiltro" required><br>
-
-        <button type="submit">Mostrar socios</button>
-    </form>
-
-    <h2>Listado de Socios</h2>
-    <div id="listadoSocios"></div>
 
     <script src="U3T2_dps.js"></script>
 </body>

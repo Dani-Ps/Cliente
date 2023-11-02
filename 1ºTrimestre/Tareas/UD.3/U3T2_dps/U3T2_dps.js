@@ -1,126 +1,316 @@
-// Objeto para representar a un socio
-function Socio(numeroSocio, dni, nombre, apellidos, fechaNacimiento, localidad) {
-  this.numeroSocio = numeroSocio;
-  this.dni = dni;
-  this.nombre = nombre;
-  this.apellidos = apellidos;
-  this.fechaNacimiento = fechaNacimiento;
-  this.localidad = localidad;
+// VARIABLES
+let socios = []; // Este array almacenará los objetos de tipo Socio.
+
+let dimensionLista;
+let contadorSocios = 1;
+
+// Objeto socio
+function Socio() {
+  this.numeroSocio = "";
+  this.dni = "";
+  this.nombre = "";
+  this.apellido = "";
+  this.fechaNacimiento = "";
+  this.localidad = "";
 }
 
-// Objeto para gestionar la escuela de tenis y sus socios
-const EscuelaDeTenis = {
-  socios: [],
+// Método para dar de alta a un nuevo socio
+function alta(dni, nombre, apellido, fechaNacimiento, localidad) {
+  let exito = false;
+  let socio = new Socio();
 
-  // Método para dar de alta un nuevo socio
-  altaSocio: function (numeroSocio, dni, nombre, apellidos, fechaNacimiento, localidad) {
-    const nuevoSocio = new Socio(numeroSocio, dni, nombre, apellidos, fechaNacimiento, localidad);
-    this.socios.push(nuevoSocio);
-  },
+  socio.numeroSocio = contadorSocios;
+  socio.dni = dni;
+  socio.nombre = nombre;
+  socio.apellido = apellido;
+  socio.fechaNacimiento = fechaNacimiento;
+  socio.localidad = localidad.toLowerCase();
 
-  // Método para dar de baja un socio por número de socio o DNI
-  bajaSocio: function (dato) {
-    this.socios = this.socios.filter(function (socio) {
-      return socio.numeroSocio !== dato && socio.dni !== dato;
-    });
-  },
+  dimensionLista = socios.length;
 
-  // Método para modificar la localidad de un socio
-  modificarLocalidad: function (numeroSocio, nuevaLocalidad) {
-    this.socios.forEach(function (socio) {
-      if (socio.numeroSocio === numeroSocio) {
-        socio.localidad = nuevaLocalidad;
-      }
-    });
-  },
+  let nuevaDimension = socios.push(socio);
 
-  // Método para determinar la categoría de un socio según su fecha de nacimiento
-  calcularCategoria: function (fechaNacimiento) {
-    const hoy = new Date();
-    const anho = hoy.getFullYear() - fechaNacimiento.getFullYear();
-    if (anho >= 19) {
-      return "Senior";
-    } else if (anho > 16 && anho < 18) {
-      return "Juvenil";
-    } else if (anho > 14 && anho < 15) {
-      return "Cadetes";
-    } else if (anho > 12 && anho < 13) {
-      return "Infantil";
-    } else if (anho > 10 && anho < 11) {
-      return "Alevín";
-    } else if (anho > 8 && anho < 9) {
-      return "Benjamín";
-    } else {
-      return "Categoría no disponible";
+  if (nuevaDimension > dimensionLista) {
+    exito = true;
+    contadorSocios++;
+  }
+  return exito;
+}
+
+// Método para dar de baja a un socio
+function baja(dato) {
+  let exito = false;
+
+  socios = socios.filter(function (socio) {
+    return socio.numeroSocio !== dato && socio.dni !== dato;
+  });
+
+  if (socios.length < dimensionLista) {
+    exito = true;
+  }
+
+  return exito;
+}
+
+//  Métopdo para modificar la localidad de un Socio.
+function modificarLocalidad(dato, localidad) {
+  let exito = false;
+  let socio = this.buscar(dato);
+
+  if (socio != null) {
+    const numeroSocioOriginal = socio.numeroSocio;
+    const dniOriginal = socio.dni;
+    const nombreOriginal = socio.nombre;
+    const apellidoOriginal = socio.apellido;
+    const fechaNacimientoOriginal = socio.fechaNacimiento;
+    const index = socios.indexOf(socio);
+
+    socios.splice(index, 1);
+
+    let nuevoSocio = new Socio();
+
+    nuevoSocio.numeroSocio = numeroSocioOriginal;
+    nuevoSocio.dni = dniOriginal;
+    nuevoSocio.nombre = nombreOriginal;
+    nuevoSocio.apellido = apellidoOriginal;
+    nuevoSocio.fechaNacimiento = fechaNacimientoOriginal;
+    nuevoSocio.localidad = localidad;
+
+    socios.push(nuevoSocio);
+    exito = true;
+  }
+  return exito;
+}
+
+// Metodo para buscar un socio en el Array de socio
+function buscar(dato) {
+  let existeSocio = new Socio();
+
+  socios.forEach(function (socio) {
+    if (socio.numeroSocio === dato || socio.dni === dato) existeSocio = socio;
+  });
+
+  return existeSocio;
+}
+
+// Metodo que recoge la fecha de nacimiento de un socio y le dice de qué categoría es.
+function categoria(fechaNacimiento) {
+  let anho = parseInt(fechaNacimiento.slice(0, 4));
+  let edad = new Date().getFullYear() - anho;
+  let mensaje = "";
+
+  if (edad >= 19) {
+    mensaje = "Senior";
+  } else if (edad >= 16 && edad <= 18) {
+    mensaje = "Juvenil";
+  } else if (edad >= 14 && edad <= 15) {
+    mensaje = "Cadete";
+  } else if (edad >= 12 && edad <= 13) {
+    mensaje = "Infantil";
+  } else if (edad >= 10 && edad <= 11) {
+    mensaje = "Alevin";
+  } else if (edad >= 8 && edad <= 9) {
+    mensaje = "Benjamin";
+  } else {
+    mensaje = "Edad no clasificada en ninguna categoría.";
+  }
+
+  return mensaje;
+}
+
+// Metodo que busca a un socio por dni o nombre y lo deuelve si existe
+function mostrarDatos(dato) {
+  let socioEncontrado = null;
+
+  socios.forEach(function (socio) {
+    if (socio.dni === dato || socio.nombre + " " + socio.apellido === dato) {
+      socioEncontrado = socio;
     }
-  },
+  });
 
-  // Método para mostrar todos los datos de los socios en una tabla
-  mostrarSocios: function () {
-    document.write("<table border='1'>");
-    document.write("<tr><th>Número de Socio</th><th>DNI</th><th>Nombre</th><th>Apellidos</th><th>Fecha de Nacimiento</th><th>Localidad</th><th>Categoría</th></tr>");
-    this.socios.forEach(function (socio) {
-      const categoria = EscuelaDeTenis.calcularCategoria(socio.fechaNacimiento);
-      document.write(`<tr><td>${socio.numeroSocio}</td><td>${socio.dni}</td><td>${socio.nombre}</td><td>${socio.apellidos}</td><td>${socio.fechaNacimiento.toDateString()}</td><td>${socio.localidad}</td><td>${categoria}</td></tr>`);
-    });
-    document.write("</table>");
-  },
+  return socioEncontrado;
+}
 
-  // Método para buscar un socio por DNI o por nombre y apellidos
-  buscarSocio: function (parametro) {
-    const resultado = this.socios.find(function (socio) {
-      return socio.dni === parametro || (socio.nombre + " " + socio.apellidos === parametro);
-    });
-    if (resultado) {
-      document.write("<p>Resultado de la búsqueda:</p>");
-      document.write(`<p>Número de Socio: ${resultado.numeroSocio}</p>`);
-      document.write(`<p>DNI: ${resultado.dni}</p>`);
-      document.write(`<p>Nombre: ${resultado.nombre}</p>`);
-      document.write(`<p>Apellidos: ${resultado.apellidos}</p>`);
-      document.write(`<p>Fecha de Nacimiento: ${resultado.fechaNacimiento.toDateString()}</p>`);
-      document.write(`<p>Localidad: ${resultado.localidad}</p>`);
-      document.write(`<p>Categoría: ${EscuelaDeTenis.calcularCategoria(resultado.fechaNacimiento)}</p>`);
-    } else {
-      document.write("<p>Socio no encontrado.</p>");
-    }
-  },
+// Función para dar de alta a un nuevo socio desde el formulario
+function darAltaSocio() {
+  const dni = document.getElementById("dni").value;
+  const nombre = document.getElementById("nombre").value;
+  const apellido = document.getElementById("apellido").value;
+  const fechaNacimiento = document.getElementById("fechaNacimiento").value;
+  const localidad = document.getElementById("localidad").value;
 
-  // Método para buscar socios por categoría
-  buscarSociosPorCategoria: function (categoriaBuscada) {
-    document.write("<p>Socios en la categoría " + categoriaBuscada + ":</p>");
-    this.socios.forEach(function (socio) {
-      if (EscuelaDeTenis.calcularCategoria(socio.fechaNacimiento) === categoriaBuscada) {
-        document.write(`<p>Número de Socio: ${socio.numeroSocio}</p>`);
-        document.write(`<p>DNI: ${socio.dni}</p>`);
-        document.write(`<p>Nombre: ${socio.nombre}</p>`);
-        document.write(`<p>Apellidos: ${socio.apellidos}</p>`);
-        document.write(`<p>Fecha de Nacimiento: ${socio.fechaNacimiento.toDateString()}</p>`);
-        document.write(`<p>Localidad: ${socio.localidad}</p>`);
-      }
-    });
-  },
+  if (alta(dni, nombre, apellido, fechaNacimiento, localidad)) {
+    // Actualizar la lista de socios
+    mostrarSocios();
+    alert("Socio dado de alta con éxito.");
+  } else {
+    alert("Error al dar de alta al socio.");
+  }
+}
 
-  // Método para buscar socios por localidad
-  buscarSociosPorLocalidad: function (localidad) {
-    document.write("<p>Socios en la localidad " + localidad + ":</p>");
-    this.socios.forEach(function (socio) {
-      if (socio.localidad === localidad) {
-        document.write(`<p>Número de Socio: ${socio.numeroSocio}</p>`);
-        document.write(`<p>DNI: ${socio.dni}</p>`);
-        document.write(`<p>Nombre: ${socio.nombre}</p>`);
-        document.write(`<p>Apellidos: ${socio.apellidos}</p>`);
-        document.write(`<p>Fecha de Nacimiento: ${socio.fechaNacimiento.toDateString()}</p>`);
-      }
-    });
-  },
-};
+// Función para dar de baja a un socio desde el formulario
+function darBajaSocio() {
+  const bajaDato = document.getElementById("bajaDato").value;
 
-// Ejemplo de uso de las funciones
-EscuelaDeTenis.altaSocio(1, "12345678A", "Juan", "Pérez", new Date(2000, 5, 15), "Madrid");
-EscuelaDeTenis.altaSocio(2, "87654321B", "María", "González", new Date(2002, 3, 10), "Barcelona");
-EscuelaDeTenis.altaSocio(3, "98765432C", "Carlos", "López", new Date(1999, 8, 20), "Madrid");
+  if (baja(bajaDato)) {
+    // Actualizar la lista de socios
+    mostrarSocios();
+    alert("Socio dado de baja con éxito.");
+  } else {
+    alert(
+      "No se encontró ningún socio con el número de socio o DNI proporcionado."
+    );
+  }
+}
 
-EscuelaDeTenis.mostrarSocios();
+// Función para buscar un socio desde el formulario
+function buscarSocio() {
+  const buscarDato = document.getElementById("buscarDato").value;
+  const socioEncontrado = mostrarDatos(buscarDato);
 
-document.write("<p>Buscar socio por DNI:</p>");
-EscuelaDeTenis.buscarSocio("12345678A");
+  if (socioEncontrado) {
+    // Mostrar los detalles del socio encontrado
+    alert(
+      "Socio encontrado:\nNúmero de Socio: " +
+        socioEncontrado.numeroSocio +
+        "\nDNI: " +
+        socioEncontrado.dni +
+        "\nNombre: " +
+        socioEncontrado.nombre +
+        "\nApellido: " +
+        socioEncontrado.apellido +
+        "\nFecha de Nacimiento: " +
+        socioEncontrado.fechaNacimiento +
+        "\nLocalidad: " +
+        socioEncontrado.localidad +
+        "\nCategoría: " +
+        categoria(socioEncontrado.fechaNacimiento)
+    );
+  } else {
+    alert("Socio no encontrado.");
+  }
+}
+
+// Función para mostrar todos los datos de los socios en una tabla
+function mostrarSocios() {
+  const listaSocios = document.getElementById("listaSocios");
+  listaSocios.innerHTML = ""; // Limpiar la lista anterior
+
+  const table = document.createElement("table");
+  table.innerHTML =
+    "<tr><th>Número de Socio</th><th>DNI</th><th>Nombre</th><th>Apellidos</th><th>Fecha de Nacimiento</th><th>Localidad</th><th>Categoría</th></tr>";
+
+  socios.forEach((socio) => {
+    const row = table.insertRow();
+    row.innerHTML =
+      "<td>" +
+      socio.numeroSocio +
+      "</td>" +
+      "<td>" +
+      socio.dni +
+      "</td>" +
+      "<td>" +
+      socio.nombre +
+      "</td>" +
+      "<td>" +
+      socio.apellido +
+      "</td>" +
+      "<td>" +
+      socio.fechaNacimiento +
+      "</td>" +
+      "<td>" +
+      socio.localidad +
+      "</td>" +
+      "<td>" +
+      categoria(socio.fechaNacimiento) +
+      "</td>";
+  });
+
+  listaSocios.appendChild(table);
+}
+
+// Función para buscar todos los socios de una categoría
+function buscarSociosPorCategoria() {
+  const categoria = document.getElementById("categoria").value;
+  const sociosEnCategoria = sociosCategoria(categoria);
+
+  if (sociosEnCategoria.length > 0) {
+    mostrarListaSocios(sociosEnCategoria);
+  } else {
+    alert("No se encontraron socios en la categoría especificada.");
+  }
+}
+
+// Función para mostrar socios de una localidad
+function mostrarSociosPorLocalidad() {
+  const localidad = document.getElementById("localidad").value;
+  const sociosEnLocalidad = sociosLocalidad(localidad);
+
+  if (sociosEnLocalidad.length > 0) {
+    mostrarListaSocios(sociosEnLocalidad);
+  } else {
+    alert("No se encontraron socios en la localidad especificada.");
+  }
+}
+
+// Función para mostrar una lista de socios
+function mostrarListaSocios(sociosLista) {
+  const listaSocios = document.getElementById("listaSocios");
+  listaSocios.innerHTML = "";
+
+  const table = document.createElement("table");
+  table.innerHTML =
+    "<tr><th>Número de Socio</th><th>DNI</th><th>Nombre</th><th>Apellidos</th><th>Fecha de Nacimiento</th><th>Localidad</th><th>Categoría</th></tr>";
+
+  sociosLista.forEach((socio) => {
+    const row = table.insertRow();
+    row.innerHTML =
+      "<td>" +
+      socio.numeroSocio +
+      "</td>" +
+      "<td>" +
+      socio.dni +
+      "</td>" +
+      "<td>" +
+      socio.nombre +
+      "</td>" +
+      "<td>" +
+      socio.apellido +
+      "</td>" +
+      "<td>" +
+      socio.fechaNacimiento +
+      "</td>" +
+      "<td>" +
+      socio.localidad +
+      "</td>" +
+      "<td>" +
+      categoria(socio.fechaNacimiento) +
+      "</td>";
+  });
+
+  listaSocios.appendChild(table);
+}
+
+// Función para modificar la localidad de un socio
+function modificarLocalidadSocio() {
+  const modificarDato = document.getElementById("modificarDato").value;
+  const nuevaLocalidad = document.getElementById("nuevaLocalidad").value;
+
+  if (modificarLocalidad(modificarDato, nuevaLocalidad)) {
+    // Actualizar la lista de socios
+    mostrarSocios();
+    alert("Localidad del socio modificada con éxito.");
+  } else {
+    alert(
+      "No se encontró ningún socio con el número de socio o DNI proporcionado."
+    );
+  }
+}
+
+// Ejemplos de uso de las funciones
+alta("12345678A", "Juan", "Pérez", "1990/06/15", "Madrid");
+alta("87654321B", "Ana", "García", "2005/02/10", "Barcelona");
+alta("55555555C", "Luis", "Fernández", "2002/09/30", "Valencia");
+
+// Mostrar la lista de socios al cargar la página
+mostrarSocios();

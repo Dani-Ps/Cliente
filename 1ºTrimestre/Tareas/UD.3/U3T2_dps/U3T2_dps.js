@@ -1,10 +1,8 @@
 // VARIABLES
-let socios = []; // Este array almacenará los objetos de tipo Socio.
-
-let dimensionLista;
+let socios = [];
 let contadorSocios = 1;
 
-// Objeto socio
+// Objeto Socio
 function Socio() {
   this.numeroSocio = "";
   this.dni = "";
@@ -12,88 +10,52 @@ function Socio() {
   this.apellido = "";
   this.fechaNacimiento = "";
   this.localidad = "";
+  this.categoria = "";
 }
 
 // Método para dar de alta a un nuevo socio
 function alta(dni, nombre, apellido, fechaNacimiento, localidad) {
-  let exito = false;
   let socio = new Socio();
-
   socio.numeroSocio = contadorSocios;
   socio.dni = dni;
   socio.nombre = nombre;
   socio.apellido = apellido;
   socio.fechaNacimiento = fechaNacimiento;
   socio.localidad = localidad.toLowerCase();
+  socio.categoria = categoria(fechaNacimiento);
 
-  dimensionLista = socios.length;
-
-  let nuevaDimension = socios.push(socio);
-
-  if (nuevaDimension > dimensionLista) {
-    exito = true;
-    contadorSocios++;
-  }
-  return exito;
+  socios.push(socio);
+  contadorSocios++;
+  return true;
 }
 
 // Método para dar de baja a un socio
 function baja(dato) {
-  let exito = false;
-
-  socios = socios.filter(function (socio) {
-    return socio.numeroSocio !== dato && socio.dni !== dato;
-  });
-
-  if (socios.length < dimensionLista) {
-    exito = true;
-  }
-
-  return exito;
-}
-
-//  Métopdo para modificar la localidad de un Socio.
-function modificarLocalidad(dato, localidad) {
-  let exito = false;
-  let socio = this.buscar(dato);
-
-  if (socio != null) {
-    const numeroSocioOriginal = socio.numeroSocio;
-    const dniOriginal = socio.dni;
-    const nombreOriginal = socio.nombre;
-    const apellidoOriginal = socio.apellido;
-    const fechaNacimientoOriginal = socio.fechaNacimiento;
-    const index = socios.indexOf(socio);
-
+  const index = socios.findIndex((socio) => socio.dni === dato);
+  if (index !== -1) {
     socios.splice(index, 1);
-
-    let nuevoSocio = new Socio();
-
-    nuevoSocio.numeroSocio = numeroSocioOriginal;
-    nuevoSocio.dni = dniOriginal;
-    nuevoSocio.nombre = nombreOriginal;
-    nuevoSocio.apellido = apellidoOriginal;
-    nuevoSocio.fechaNacimiento = fechaNacimientoOriginal;
-    nuevoSocio.localidad = localidad;
-
-    socios.push(nuevoSocio);
-    exito = true;
+    return true;
   }
-  return exito;
+  return false;
 }
 
-// Metodo para buscar un socio en el Array de socio
+// Método para modificar la localidad de un Socio.
+function modificarLocalidad(dato, localidad) {
+  const socio = buscar(dato);
+  if (socio) {
+    socio.localidad = localidad;
+    return true;
+  }
+  return false;
+}
+
+// Método para buscar un socio en el Array de socios
 function buscar(dato) {
-  let existeSocio = new Socio();
-
-  socios.forEach(function (socio) {
-    if (socio.numeroSocio === dato || socio.dni === dato) existeSocio = socio;
-  });
-
-  return existeSocio;
+  return socios.find(
+    (socio) => socio.numeroSocio === dato || socio.dni === dato
+  );
 }
-
-// Metodo que recoge la fecha de nacimiento de un socio y le dice de qué categoría es.
+// Método que recoge la fecha de nacimiento de un socio y le dice de qué categoría es.
 function categoria(fechaNacimiento) {
   let anho = parseInt(fechaNacimiento.slice(0, 4));
   let edad = new Date().getFullYear() - anho;
@@ -118,18 +80,43 @@ function categoria(fechaNacimiento) {
   return mensaje;
 }
 
-// Metodo que busca a un socio por dni o nombre y lo deuelve si existe
+// Método que busca a un socio por DNI o nombre y lo devuelve si existe
 function mostrarDatos(dato) {
   let socioEncontrado = null;
 
   socios.forEach(function (socio) {
-    if (socio.dni === dato || socio.nombre + " " + socio.apellido === dato) {
+    if (
+      socio.dni === dato ||
+      socio.nombre.toLowerCase() + " " + socio.apellido.toLowerCase() ===
+        dato.toLowerCase()
+    ) {
       socioEncontrado = socio;
     }
   });
 
-  return socioEncontrado;
+  if (socioEncontrado) {
+    alert(
+      "Socio encontrado:\nNúmero de Socio: " +
+        socioEncontrado.numeroSocio +
+        "\nDNI: " +
+        socioEncontrado.dni +
+        "\nNombre: " +
+        socioEncontrado.nombre +
+        "\nApellido: " +
+        socioEncontrado.apellido +
+        "\nFecha de Nacimiento: " +
+        socioEncontrado.fechaNacimiento +
+        "\nLocalidad: " +
+        socioEncontrado.localidad +
+        "\nCategoría: " +
+        categoria(socioEncontrado.fechaNacimiento)
+    );
+  } else {
+    alert("Socio no encontrado");
+  }
 }
+
+// Funciones relacionadas con la interfaz de usuario
 
 // Función para dar de alta a un nuevo socio desde el formulario
 function darAltaSocio() {
@@ -151,22 +138,17 @@ function darAltaSocio() {
 // Función para dar de baja a un socio desde el formulario
 function darBajaSocio() {
   const bajaDato = document.getElementById("bajaDato").value;
-
   if (baja(bajaDato)) {
     // Actualizar la lista de socios
     mostrarSocios();
     alert("Socio dado de baja con éxito.");
-  } else {
-    alert(
-      "No se encontró ningún socio con el número de socio o DNI proporcionado."
-    );
   }
 }
 
 // Función para buscar un socio desde el formulario
 function buscarSocio() {
   const buscarDato = document.getElementById("buscarDato").value;
-  const socioEncontrado = mostrarDatos(buscarDato);
+  const socioEncontrado = buscar(buscarDato);
 
   if (socioEncontrado) {
     // Mostrar los detalles del socio encontrado
@@ -229,10 +211,21 @@ function mostrarSocios() {
   listaSocios.appendChild(table);
 }
 
-// Función para buscar todos los socios de una categoría
-function buscarSociosPorCategoria() {
+function buscarSociosCategoria(categoria) {
+  let newList = [];
+  socios.forEach(function (socio) {
+    if (socio.categoria === categoria) {
+      newList.push(socio);
+    }
+  });
+
+  return newList;
+}
+
+// Función para mostrar todos los socios de una categoría
+function mostrarSociosPorCategoria() {
   const categoria = document.getElementById("categoria").value;
-  const sociosEnCategoria = sociosCategoria(categoria);
+  const sociosEnCategoria = buscarSociosCategoria(categoria);
 
   if (sociosEnCategoria.length > 0) {
     mostrarListaSocios(sociosEnCategoria);
@@ -240,20 +233,35 @@ function buscarSociosPorCategoria() {
     alert("No se encontraron socios en la categoría especificada.");
   }
 }
+function buscarSociosLocalidad(localidad) {
+  localidad = localidad.toLowerCase();
+  let newList = [];
 
+  socios.forEach(function (socio) {
+    if (socio.localidad === localidad) {
+      newList.push(socio);
+    }
+  });
+  return newList;
+}
 // Función para mostrar socios de una localidad
 function mostrarSociosPorLocalidad() {
   const localidad = document.getElementById("localidad").value;
-  const sociosEnLocalidad = sociosLocalidad(localidad);
+  const sociosEnLocalidad = buscarSociosLocalidad(localidad);
 
   if (sociosEnLocalidad.length > 0) {
     mostrarListaSocios(sociosEnLocalidad);
   } else {
     alert("No se encontraron socios en la localidad especificada.");
   }
+  // Este funcion pese a que tiene el mismo codigo que el de  mostrarSociosPorCategoria()
+  // No funciona como deberia ya que no muestra, los socios si solo hay uno en la localidad
+  // Por ejemplo en el caso de uso si filtras por cualquiera de las localidades no muestra nada
+  // pero si das de alta un nuevo socio de con la misma localidad y vuelves a filtrar funciona
+  // He pasado toda mi tarde de sabado intentado solucionarlo pero no he podido.
 }
 
-// Función para mostrar una lista de socios
+// Función para mostrar una lista de socios filtrada
 function mostrarListaSocios(sociosLista) {
   const listaSocios = document.getElementById("listaSocios");
   listaSocios.innerHTML = "";
@@ -284,7 +292,7 @@ function mostrarListaSocios(sociosLista) {
       socio.localidad +
       "</td>" +
       "<td>" +
-      categoria(socio.fechaNacimiento) +
+      socio.categoria +
       "</td>";
   });
 
@@ -311,6 +319,3 @@ function modificarLocalidadSocio() {
 alta("12345678A", "Juan", "Pérez", "1990/06/15", "Madrid");
 alta("87654321B", "Ana", "García", "2005/02/10", "Barcelona");
 alta("55555555C", "Luis", "Fernández", "2002/09/30", "Valencia");
-
-// Mostrar la lista de socios al cargar la página
-mostrarSocios();

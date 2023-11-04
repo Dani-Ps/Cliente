@@ -12,6 +12,8 @@
 
     <!-- Mostrar la lista de socios -->
     <h2>Lista de Socios</h2>
+    <button type="button" onclick="mostrarSocios()">Ver todos los socios de la lista</button>
+
     <div id="listaSocios"></div>
     <!-- Formulario para dar de alta a un nuevo socio -->
     <h2>Alta de Socio</h2>
@@ -44,10 +46,10 @@
     <!-- Formulario para buscar un socio por DNI o nombre y apellidos -->
     <h2>Buscar Socio</h2>
     <form id="buscarSocioForm">
-        <label for="buscarDato">Buscar por DNI o Nombre y Apellidos:</label>
-        <input type="text" id="buscarDato" required><br>
+        <label for="dato">Buscar por DNI o Nombre y Apellidos:</label>
+        <input type="text" id="dato" required><br>
 
-        <button type="button" onclick="buscarSocio()">Buscar Socio</button>
+        <button type="button" onclick="mostrarDatos(document.getElementById('dato').value)">Ir</button>
     </form>
     <!-- Formulario para buscar todos los socios de una categoría -->
     <h2>Buscar Socios por Categoría</h2>
@@ -55,16 +57,16 @@
         <label for="categoria">Categoría (ej. Senior, Juvenil, Cadete):</label>
         <input type="text" id="categoria" required><br>
 
-        <button type="button" onclick="buscarSociosPorCategoria()">Buscar Socios</button>
+        <button type="button" onclick="mostrarSociosPorCategoria()">Ir</button>
     </form>
 
     <!-- Formulario para mostrar socios de una localidad -->
-    <h2>Mostrar Socios por Localidad</h2>
-    <form id="mostrarLocalidadForm">
+    <h2>Buscar Socios por Localidad</h2>
+    <form id="buscarLocalidadForm">
         <label for="localidad">Localidad:</label>
         <input type="text" id="localidad" required><br>
 
-        <button type="button" onclick="mostrarSociosPorLocalidad()">Mostrar Socios</button>
+        <button type="button" onclick="mostrarSociosPorLocalidad()">Ir</button>
     </form>
 
     <!-- Formulario para modificar la localidad de un socio -->
@@ -78,9 +80,6 @@
 
         <button type="button" onclick="modificarLocalidadSocio()">Modificar Localidad</button>
     </form>
-
-
-
 
     <script src="U3T2_dps.js"></script>
 </body>

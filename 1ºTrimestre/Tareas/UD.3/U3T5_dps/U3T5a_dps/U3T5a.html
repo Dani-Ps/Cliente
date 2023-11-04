@@ -8,15 +8,48 @@
 </head>
 
 <body>
-    <h1>Bingo</h1>
-    <button onclick="comenzar()">Iniciar Juego</button>
-    <button onclick="sacaNumeroNuevo()">Nuevo Número</button>
+    <h1>Juego de Bingo</h1>
+    <button onclick="comenzar()">Comenzar Partida</button>
+    <button onclick="sacaNumeroNuevo()">Sacar Número Nuevo</button>
 
-    <div id="inicio-fin"></div>
-    <div id="carton"></div>
-    <div id="numeros-salidos"></div>
-    <div id="resultado"></div>
+    <h2>Inicio de la partida</h2>
+    <p id="inicioPartida"></p>
+    <h2>Fin de la partida</h2>
+    <p id="finPartida"></p>
+
+    <h2>Cartón de Bingo</h2>
+    <table id="carton">
+        <tr>
+            <td id="c00"></td>
+            <td id="c01"></td>
+            <td id="c02"></td>
+            <td id="c03"></td>
+            <td id="c04"></td>
+        </tr>
+        <tr>
+            <td id="c10"></td>
+            <td id="c11"></td>
+            <td id="c12"></td>
+            <td id="c13"></td>
+            <td id="c14"></td>
+        </tr>
+        <tr>
+            <td id="c20"></td>
+            <td id="c21"></td>
+            <td id="c22"></td>
+            <td id="c23"></td>
+            <td id="c24"></td>
+        </tr>
+    </table>
+
+    <h2>Números que van saliendo</h2>
+    <ul id="numerosSalidos"></ul>
+
+    <h2>Resultado de la línea</h2>
+    <p id="resultadoLinea"></p>
     <script src="U3T5a.js"></script>
 </body>
 
 </html>
+
+<!-- Daniel Perez Serrano -->

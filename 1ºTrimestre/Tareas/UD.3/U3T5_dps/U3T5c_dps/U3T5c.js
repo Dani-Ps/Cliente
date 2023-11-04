@@ -1,3 +1,4 @@
+// Declaro el objeto Runner con sus atributos
 const Runner = {
   Nombre: "",
   Apellidos: "",
@@ -6,102 +7,65 @@ const Runner = {
   Dorsal: 0,
   HoraInicio: null,
   HoraFinalizacion: null,
-
-  solicitarDatos: function () {
-    this.Nombre = prompt("Nombre:");
-    this.Apellidos = prompt("Apellidos:");
-    this.Evento = prompt("Evento:");
-    const fechaStr = prompt("Fecha (YYYY-MM-DD):");
-    this.Fecha = this.validarFecha(fechaStr);
-    this.Dorsal = parseInt(prompt("Dorsal:"));
-    const inicioStr = prompt("Hora de Inicio (HH:MM:SS):");
-    this.HoraInicio = this.validarHora(inicioStr);
-    const finalizacionStr = prompt("Hora de Finalización (HH:MM:SS):");
-    this.HoraFinalizacion = this.validarHora(finalizacionStr);
-  },
-
-  validarFecha: function (fechaStr) {
-    const fecha = new Date(fechaStr);
-    if (isNaN(fecha.getTime())) {
-      alert("Fecha no válida. Se utilizará la fecha actual.");
-      return new Date();
-    }
-    return fecha;
-  },
-
-  validarHora: function (horaStr) {
-    const partesHora = horaStr.split(":");
-    if (partesHora.length !== 3) {
-      alert("Formato de hora incorrecto. Se utilizará 00:00:00.");
-      return null; // Devuelve null si el formato de hora es incorrecto
-    }
-    const hora = parseInt(partesHora[0]);
-    const minutos = parseInt(partesHora[1]);
-    const segundos = parseInt(partesHora[2]);
-
-    if (
-      isNaN(hora) ||
-      isNaN(minutos) ||
-      isNaN(segundos) ||
-      hora < 0 ||
-      hora > 23 ||
-      minutos < 0 ||
-      minutos > 59 ||
-      segundos < 0 ||
-      segundos > 59
-    ) {
-      alert("Hora no válida. Se utilizará 00:00:00.");
-      return null; // Devuelve null si la hora no es válida
-    }
-
-    return new Date(1970, 0, 1, hora, minutos, segundos);
-  },
-
-  calcularMarca: function () {
-    if (this.HoraInicio && this.HoraFinalizacion) {
-      const tiempoInicio = this.HoraInicio.getTime();
-      const tiempoFinalizacion = this.HoraFinalizacion.getTime();
-      const tiempoTranscurrido = tiempoFinalizacion - tiempoInicio;
-
-      if (tiempoTranscurrido < 0) {
-        return "00:00:00"; // Devuelve 00:00:00 si la finalización es anterior al inicio
-      }
-
-      // Calcula horas, minutos y segundos
-      const segundos = Math.floor(tiempoTranscurrido / 1000);
-      const minutos = Math.floor(segundos / 60);
-      const horas = Math.floor(minutos / 60);
-
-      // Ajusta minutos y segundos
-      const minutosAjustados = minutos % 60;
-      const segundosAjustados = segundos % 60;
-
-      // Formatea la marca en hh:mm:ss
-      const marca =
-        (horas < 10 ? "0" : "") + horas + ":" +
-        (minutosAjustados < 10 ? "0" : "") + minutosAjustados + ":" +
-        (segundosAjustados < 10 ? "0" : "") + segundosAjustados;
-
-      return marca;
-    } else {
-      return "00:00:00"; // Devuelve 00:00:00 si falta información de inicio o finalización
-    }
-  }
 };
 
-// Solicitar datos al usuario
-Runner.solicitarDatos();
+// Solicito datos al usuario y  los asigno a las atributos del objeto
+Runner.Nombre = prompt("Nombre:");
+Runner.Apellidos = prompt("Apellidos:");
+Runner.Evento = prompt("Evento:");
+const fechaStr = prompt("Fecha (YYYY-MM-DD):");
+Runner.Fecha = new Date(fechaStr);
+Runner.Dorsal = parseInt(prompt("Dorsal:"));
+const inicioStr = prompt("Hora de Inicio (HH:MM:SS):");
+Runner.HoraInicio = new Date(`1970-01-01T${inicioStr}`);
+const finalizacionStr = prompt("Hora de Finalización (HH:MM:SS):");
+Runner.HoraFinalizacion = new Date(`1970-01-01T${finalizacionStr}`);
 
-// Mostrar resultados en el HTML utilizando document.write
+// Calcular la marca
+function calcularMarca() {
+  if (Runner.HoraInicio && Runner.HoraFinalizacion) {
+    const tiempoTranscurrido = Runner.HoraFinalizacion - Runner.HoraInicio;
+
+    if (tiempoTranscurrido < 0) {
+      // Si sale negativa la diferencia se pone a 0 el contador
+      return "00:00:00";
+    }
+    // Declaro las propiedades del tiempo
+    const segundos = Math.floor(tiempoTranscurrido / 1000);
+    const minutos = Math.floor(segundos / 60);
+    const horas = Math.floor(minutos / 60);
+    const minutosAjustados = minutos % 60; // Ajustos los minutos para que estén entre 0-59 y lo mismo con los segundos
+    const segundosAjustados = segundos % 60;
+    return `${horas}:${minutosAjustados}:${segundosAjustados}`; // Devuelvo todos sus valores ya ajustados
+  } else {
+    return "00:00:00";
+  }
+}
+
+// MUestro los resultados en el HTML
 document.write(`<p>Nombre: ${Runner.Nombre}</p>`);
 document.write(`<p>Apellidos: ${Runner.Apellidos}</p>`);
 document.write(`<p>Evento: ${Runner.Evento}</p>`);
 document.write(`<p>Fecha: ${Runner.Fecha.toDateString()}</p>`);
 document.write(`<p>Dorsal: ${Runner.Dorsal}</p>`);
+
+// Muestro la hora de inicio en formato legible o "No especificada" si no se proporciona los datos que se pide
+
 document.write(
-  `<p>Hora de Inicio: ${Runner.HoraInicio ? Runner.HoraInicio.toLocaleTimeString() : 'No especificada'}</p>`
+  `<p>Hora de Inicio: ${
+    Runner.HoraInicio
+      ? Runner.HoraInicio.toLocaleTimeString()
+      : "No especificada"
+  }</p>`
 );
 document.write(
-  `<p>Hora de Finalización: ${Runner.HoraFinalizacion ? Runner.HoraFinalizacion.toLocaleTimeString() : 'No especificada'}</p>`
+  `<p>Hora de Finalización: ${
+    Runner.HoraFinalizacion
+      ? Runner.HoraFinalizacion.toLocaleTimeString()
+      : "No especificada"
+  }</p>`
 );
-document.write(`<p>Marca: ${Runner.calcularMarca()}</p>`);
+document.write(`<p>Marca: ${calcularMarca()}</p>`); // Llamamos a la función calcularMarca
+/**
+ * Autor: Daniel Perez Serrano
+ */

@@ -1,5 +1,5 @@
 const carton = [[], [], []]; // Declaro la constante del carton vacio
-const numerosSalidos = []; // Almacenara el total de número cantados
+let numerosSalidos = []; // Almacenara el total de número cantados
 let inicioPartida = false; // Bandera que marcará si se ha iniciado una partida
 
 // Funcion que comienza la partida

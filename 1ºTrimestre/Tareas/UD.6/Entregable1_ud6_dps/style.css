@@ -1,0 +1,78 @@
+/* Estilo para el cuerpo del documento */
+body {
+    width: 75%;
+    height: 100vh;
+    margin: 0 auto;
+}
+
+/* Estilo para el contenedor principal */
+.container {
+    display: flex;
+    width: 100%;
+    height: auto;
+    margin-top: 200px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo para las imágenes izquierda, derecha y caja */
+.img-left img,
+.img-right img,
+.box img {
+    width: 200px;
+    height: 200px;
+}
+
+/* Estilo para los elementos de clase .img-left y .img-right */
+.img-left,
+.img-right {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para la caja */
+.box {
+    display: flex;
+    width: 600px;
+    height: 600px;
+    border: 10px solid black;
+    justify-content: center;
+    align-items: center;
+    margin: 0 40px;
+}
+
+/* Estilo para la fila de colores */
+.colors {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* Estilo para los elementos span */
+span {
+    width: 100px;
+    height: 100px;
+    margin: 10px 10px;
+}
+
+/* Estilos de color para los elementos span */
+.colors span:nth-child(1) {
+    background-color: black;
+}
+.colors span:nth-child(2) {
+    background-color: red;
+}
+.colors span:nth-child(3) {
+    background-color: blue;
+}
+.colors span:nth-child(4) {
+    background-color: yellow;
+}
+.colors span:nth-child(5) {
+    background-color: green;
+}
+.colors span:nth-child(6) {
+    background-color: pink;
+}
+
+/* Daniel Perez Serrano */

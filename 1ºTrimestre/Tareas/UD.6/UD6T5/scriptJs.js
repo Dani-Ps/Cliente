@@ -1,23 +1,26 @@
-// VARIABLES
+// Seleccionar todas las filas
 let rows = document.querySelectorAll("tr");
 
-for (let i = 1; i < rows.length; i++) {
-    rows[i].addEventListener("mouseleave", function () {
-        let cells = rows[i].children;
-        for (const item of cells) {
-            item.style.backgroundColor = 'white';
-        }
-
-    });
+// Función para manejar el evento de entrada
+function mouseEntrar() {
+    let celda = this.children;
+    for (const item of celda) {
+        item.style.backgroundColor = 'red';
+    }
 }
 
-for (let i = 1; i < rows.length; i++) {
-    rows[i].addEventListener("mouseenter", function () {
-
-        let cells = rows[i].children;
-        for (const item of cells) {
-            item.style.backgroundColor = 'red';
-        }
-
-    });
+// Función para manejar el evento de salida
+function mouseSalir() {
+    let celda = this.children;
+    for (const item of celda) {
+        item.style.backgroundColor = 'white';
+    }
 }
+
+// Asignar los manejadores de eventos a cada fila
+for (const item of rows) {
+    item.addEventListener("mouseenter", mouseEntrar);
+    item.addEventListener("mouseleave", mouseSalir);
+}
+
+

@@ -25,7 +25,7 @@ function ampliarImg() {
 
 function cambiarBorder(j) {
   // Funcion para cambiar el color del borde de la caja
-  const colors = ["black", "red", "blue", "yellow", "green", "pink"]; // Almaena las opciones de colores
+  const colors = ["black", "red", "blue", "yellow", "green", "pink"]; // Almacena las opciones de colores
   if (j >= 0 && j < colores.length) {
     // Valido si j esta dentro de los valores length de colores
     caja.style.border = `10px solid ${colors[j]}`; // Cambio el color segun el index

@@ -1,0 +1,37 @@
+/* Reset de estilos para quitar márgenes y rellenos predeterminados */
+body{
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para el contenedor principal */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+/* Estilo para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+thead > tr > th{
+    background-color: green;
+
+}
+
+/* Estilo para las celdas de encabezado de la tabla */
+th {
+    border: 1px solid #ddd;
+    padding: 30px; 
+    text-align: left;
+}
+
+/* Estilo para las celdas de la tabla */
+td {
+    border: 1px solid #ddd;
+    padding: 30px; 
+}
+
+

@@ -1,0 +1,126 @@
+html{
+	color: #404040;
+	font-family: sans-serif;
+	font-size: 16px;
+}
+body{
+	align-items: center;
+	background-attachment: fixed;
+	background-image: linear-gradient(to bottom right, #ff9eaa 0% 65%, #e860ff 95% 100%);
+	background-position: center;
+	box-sizing: border-box;
+	display: flex;
+	height: auto;
+	justify-content: center;
+	margin: 0;
+	padding: 4rem 0;
+}
+.card{
+	background-color: #fff;
+	border-radius: 2rem;
+	box-shadow: 0px 1rem 1.5rem rgba(0,0,0,0.5);
+	display: flex;
+	flex-direction: column;
+	max-width: 360px;
+	overflow: hidden;
+}
+.card .banner{
+	align-items: flex-end;
+	background-image: url("../img/fondo.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	box-sizing: border-box;
+	display: flex;
+	height: 11rem;
+	justify-content: center;
+	margin-bottom: 5rem;
+}
+.card .banner img{
+	background-color: #fff;
+	border-radius: 50%;
+	box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.3);
+	height: 8rem;
+	transform: translateY(50%);
+	transition: transform 200ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
+	width: 8rem;
+}
+.card h2.titulo{
+	margin: 0;
+	padding: 0 2rem 0.5rem;
+	text-align: center;
+}
+.card .subtitulo{
+	color: #a0a0a0;
+	font-size: 0.85rem;
+	padding: 0 2rem 1.2rem;
+	text-align: center;
+}
+.card .datos{
+	display: flex;
+	flex-direction: column;
+	padding: 0 2rem 1.2rem;
+}
+.card .datos .info{
+	display: flex;
+	justify-content: space-around;
+	padding: 0 0 1rem;
+}
+.card .datos .info h2{
+	box-sizing: border-box;
+	color: darkblue;
+	margin: 0;
+	text-align: center;
+}
+.card .datos .info .small{
+	box-sizing: border-box;
+	font-size: 0.8rem;
+	margin: 0;
+	text-align: center;
+}
+.card .datos .boton button{
+	background-color: #ffd01a;
+	border: none;
+	border-radius: 1.5rem/50%;
+	box-sizing: border-box;
+	color: inherit;
+	font-size: 1.3rem;
+	font-weight: bold;
+	padding: 1rem;
+	transition: background-color 100ms ease-in-out, transform 200ms cubic-bezier(0.18, 0.89, 0.32, 1.28);
+	width: 100%;
+}
+.card .datos .boton button:hover{
+	background-color: #efb10a;
+	cursor: pointer;
+	transform: scale(1.1);
+}
+.card .datos .boton button:active{
+	background-color: #e8a200;
+	transform: scale(1);
+}
+.card .desc{
+	line-height: 150%;
+	padding: 0 2rem 2.5rem;
+	text-align: justify;
+}
+.inputs{
+	line-height: 150%;
+	padding: 0 2rem 2.5rem;
+	text-align: center;
+}
+.inputs button{
+	margin-top: 2%;
+	background-color: #6b77e9;
+	border: none;
+	border-radius: 1.1rem/50%;
+	box-sizing: border-box;
+	color: inherit;
+	font-weight: bold;
+	padding: 1rem;
+	
+	width: 60%;
+}
+::placeholder{
+	color:#e8a200;
+}

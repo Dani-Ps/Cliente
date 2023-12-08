@@ -4,6 +4,7 @@ const botonEmpezar = document.getElementById('begin');
 const botonNewNumero = document.getElementById('newNumber');
 const numerosDiv = document.querySelector('.numeros');
 
+
 class Carton {
     constructor() {
         this.carton = [[], [], []];
@@ -114,18 +115,26 @@ function mostrarNumero(numerosBingo, n) {
 // Función principal para iniciar el juego
 function comenzarJuego() {
     // Rellenar el cartón con números aleatorios
+
+    numerosDiv.innerHTML = '';
+
     let carton = new Carton();
+
     const numerosDelCarton = generarNumerosCarton();
-    console.log('numerosDelCarton:', numerosDelCarton);
+
     const numerosBingo = generarNumerosBingo();
+    // Hago una copia de los numeros del carton
     var n = numerosDelCarton.slice();
+
+    // Relleno el carton con los numeros generados
     carton.carton = rellenarCarton(numerosDelCarton);
+    //Muestro el carton
     mostrarCarton(carton.carton);
 
-    // Manejar eventos
-    botonNewNumero.addEventListener('click', function () {
+    const mostrarNewNumero = function () {
         mostrarNumero(numerosBingo, n);
-    });
+    }
+    botonNewNumero.addEventListener('click', mostrarNewNumero);
 }
 
 // Asociar el evento de inicio con la función principal

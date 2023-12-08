@@ -3,6 +3,11 @@
 * Contenido de la hoja de estilo
 */
 
+button{
+  width: 60px;
+  height: auto;
+}
+
 @keyframes lineaCantada {
   0% {
     transform: scale(1);

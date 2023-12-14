@@ -1,13 +1,74 @@
-
-/*
-* Contenido de la hoja de estilo
-*/
-
-button{
-  width: 60px;
-  height: auto;
+/* Reset de margen y relleno para todos los elementos */
+* {
+  margin: 0;
+  padding: 0;
 }
 
+/* Estilos para el cuerpo de la página */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Estilos para el encabezado */
+header {
+  display: flex;
+  width: 100vw;
+  height: 100px;
+  justify-content: center;
+}
+
+/* Estilos para los títulos h2 con efectos */
+h2 {
+  font-size: 7rem;
+  position: absolute;
+}
+
+/* Estilos específicos para el título con clase "border" */
+.border {
+  color: black;
+  text-shadow: -1px -1px 0 white, 1px -1px 0 white, 1px 1px 0 white, -1px 1px 0 white;
+}
+
+/* Estilos específicos para el título con clase "wave" y animación "wave" */
+.wave {
+  --wave-color-1: #4F386F;
+  --wave-color-2: #2ecc71; /* Nuevo color del wave */
+
+  color: var(--wave-color-1);
+  animation: wave 3s ease-in-out infinite;
+}
+
+/* Animación "wave" */
+@keyframes wave {
+  0%, 100% {
+    color: var(--wave-color-1);
+    clip-path: polygon(0% 47%, 10% 48%, 33% 54%, 54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+  }
+  50% {
+    color: var(--wave-color-2);
+    clip-path: polygon(0% 60%, 15% 65%, 34% 66%, 51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+  }
+}
+
+/* Estilos generales para los botones */
+button {
+  width: 100px;
+  height: 40px;
+  background-color: #4F386F;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+/* Animación "lineaCantada" para elementos con clase "linea-cantada" dentro de elementos con clase "fila" */
 @keyframes lineaCantada {
   0% {
     transform: scale(1);
@@ -20,90 +81,86 @@ button{
   }
 }
 
-.fila.linea-cantada {
+/* Estilos específicos para elementos con clase "linea-cantada" dentro de elementos con clase "fila" */
+.linea-cantada {
   animation: lineaCantada 1s ease-in-out;
 }
 
-/* Estilos para el mensaje de Bingo */
-.bingo-message {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2em;
-  padding: 20px;
-  background-color: #3498db;
-  color: #fff;
-  border-radius: 10px;
-  display: none; /* Inicialmente oculto */
-}
-
-/*Estilo de la carga de la pantalla*/
-.loader {
-  width: fit-content;
-  font-size: 17px;
-  font-family: monospace;
-  line-height: 1.4;
-  font-weight: bold;
-  background: linear-gradient(#000 0 0) left, linear-gradient(#000 0 0) right;
-  background-repeat: no-repeat;
-  border-right: 5px solid #0000;
-  border-left: 5px solid #0000;
-  background-origin: border-box;
-  position: relative;
-  animation: l9-0 2s infinite;
-}
-
-.loader::before {
-  content: "Loading";
-}
-
-.loader::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 22px;
-  height: 60px;
-  background: linear-gradient(90deg, #000 4px, #0000 0 calc(100% - 4px), #000 0) bottom / 22px 20px,
-    linear-gradient(90deg, red 4px, #0000 0 calc(100% - 4px), red 0) bottom 10px left 0/22px 6px,
-    linear-gradient(#000 0 0) bottom 3px left 0 / 22px 8px,
-    linear-gradient(#000 0 0) bottom 0 left 50%/8px 16px;
-  background-repeat: no-repeat;
-  animation: l9-1 2s infinite;
-}
-
-@keyframes l9-0 {
-  0%, 25% {
-    background-size: 50% 100%;
-  }
-  25.1%, 75% {
-    background-size: 0 0, 50% 100%;
-  }
-  75.1%, 100% {
-    background-size: 0 0, 0 0;
-  }
-}
-
-@keyframes l9-1 {
-  25% {
-    background-position: bottom, bottom 54px left 0, bottom 3px left 0, bottom 0 left 50%;
-    left: 0
-  }
-  25.1% {
-    background-position: bottom, bottom 10px left 0, bottom 3px left 0, bottom 0 left 50%;
-    left: 0
+/* Animación "iconoVerde" para elementos con clase "icono-verde" */
+@keyframes iconoVerde {
+  0% {
+    transform: translateY(0);
   }
   50% {
-    background-position: bottom, bottom 10px left 0, bottom 3px left 0, bottom 0 left 50%;
-    left: calc(100% - 22px)
+    transform: translateY(-10px);
   }
-  75% {
-    background-position: bottom, bottom 54px left 0, bottom 3px left 0, bottom 0 left 50%;
-    left: calc(100% - 22px)
+  100% {
+    transform: translateY(0);
   }
-  75.1% {
-    background-position: bottom, bottom 10px left 0, bottom 3px left 0, bottom 0 left 50%;
-    left: calc(100% - 22px)
-  }
+}
+
+/* Estilos específicos para elementos con clase "icono-verde" */
+.icono-verde {
+  animation: iconoVerde 0.5s ease-in-out;
+}
+
+/* Estilos para los números en la lista de números */
+.numbers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+/* Estilos para los números individuales */
+.number {
+  font-size: 24px;
+  margin: 5px;
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 5px;
+}
+
+/* Estilos específicos para los números con clase "bingo" */
+.number.bingo {
+  background-color: #2ecc71;
+}
+
+/* Estilos específicos para elementos con clase "defaultCarton" */
+.defaultCarton {
+  color: #FFD5E3;
+}
+
+/* Estilos específicos para elementos con clase "defaultNum" */
+.defaultNum {
+  color: #CA50A2;
+}
+
+/* Estilos para los títulos h4 */
+h4 {
+  color: #FFD5E3;
+}
+
+/* Estilos específicos para elementos con clase "mensaje" */
+.mensaje {
+  width: 100vw;
+  height: 50px;
+  margin-top: 10%;
+  text-align: center;
+}
+
+/* Estilos específicos para elementos con clase "numeros" */
+.numeros {
+  margin: 2%;
+}
+
+/* Estilos específicos para elementos con clase "carton" */
+.carton {
+  margin-bottom: 2%;
+}
+
+/* Estilos específicos para elementos con clase "botones" */
+.botones {
+  display: flex;
 }

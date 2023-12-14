@@ -71,8 +71,8 @@ function generarNumeros(limite) {
  * @returns 
  */
 function rellenarCarton(numerosCarton) {
-    // Creo un nuevo array (Array.from) con longitud 3 subArrays
-    // Y se rellena cada uno de ellos copiando los 5 primeros numeros y a la misma vez eliminandolos del array numerosCarton
+    // Creo un nuevo array (Array.from) con longitud 3 subArrays.
+    // Y se rellena cada uno de ellos copiando los 5 primeros numeros y a la misma vez eliminandolos del array numerosCarton.
     return Array.from({ length: 3 }, () => numerosCarton.splice(0, 5));
 }
 /**
@@ -80,16 +80,19 @@ function rellenarCarton(numerosCarton) {
  * @param {Array} carton 
  */
 function mostrarCarton(carton) {
-
-    limpiarDOM(); // Limpiamos el Dom por si acaso se hubiera generado anteriormente un catrton
+    // Limpio el Dom por si acaso se hubiera generado anteriormente un catrton
+    limpiarDOM(); 
 
     // Itero en el carton
     carton.forEach(fila => {
+        
         // Contenedor que contendrá los iconos es decir sera una fila, y habrá un total de 3
         const filaDiv = document.createElement('div');
         filaDiv.classList.add('fila');
+        
         // Itero sobre los numeros de las filas, 5 iteraciones en total
         fila.forEach(numero => {
+            
             // Crear el icono y añadirlo a la clase
             const icono = document.createElement('i');
             icono.classList.add('fa-regular', 'fa-circle', 'fa-2xl', 'fa-stack', 'defaultCarton');
@@ -105,6 +108,7 @@ function mostrarCarton(carton) {
             icono.appendChild(numeroSpan);
             filaDiv.appendChild(icono);
         });
+        
         // Añado la fila al DOM, en su contenedor
         cartonDiv.appendChild(filaDiv);
     });
@@ -116,23 +120,29 @@ function mostrarCarton(carton) {
  * @param {Elemet} fila - Fila donde se encuentra el icono
  */
 function cambiarIconoVerde(icono, fila) {
+    
     // Cambio de color el icono 
     icono.style.color = '#2ecc71';
+    
     // Itero sobre los iconos de la fila hasta encontrar el que tiene el mismo numero 
     for (const iconosFila of fila.children) {
 
         if (iconosFila.textContent === icono.textContent) {
-
-            iconosFila.style.color = '#2ecc71'; // Cambio el color del icono del carton 
-            // Le doy propiedad de clase adicional para la animacion 
+            
+            // Cambio el color del icono del carton.
+            iconosFila.style.color = '#2ecc71'; 
+            
+            // Le doy propiedad de clase adicional para la animacion. 
             iconosFila.classList.add('icono-verde');
             icono.classList.add('icono-verde');
         }
     }
     // Llamamos a la funcion que examina si todos los iconos de la filan tienen la clase '.icono-verde'
     if (validarColorFila(fila)) {
+        
         // Si todas los iconos son verdes verificcamos cuantas lineas han sido cantadas.
         if (todasAzules()) {
+            
             // Si se han cantado 3 es que has hecho Bingo, de lo contrario se canta otra linea.
             cantarBingo();
         } else {
@@ -142,13 +152,15 @@ function cambiarIconoVerde(icono, fila) {
 }
 /**
  * Funcion que añade la clase al contenedor (.fila) la clase '.linea-cantada' para que haga una animación.
- * Estila todos los iconos de la fila en cuestión de azul
- * @param {Element} fila - Fila que se desesa cambiar el estilo
+ * Estila todos los iconos de la fila en cuestión de azul.
+ * @param {Element} fila - Fila que se desesa cambiar el estilo.
  */
 function marcarLineaCantada(fila) {
+    
     fila.classList.add('linea-cantada');
-
+    
     for (const iconosFila of fila.children) {
+        
         iconosFila.style.color = '#85CDF0';
     }
 }
@@ -160,11 +172,11 @@ function marcarLineaCantada(fila) {
  * @returns - Devuelve un valor boolano para saber el resultado de la validación (true si la fila tiene la clase y false en caso contrario).
  */
 function validarColorFila(fila) {
-    // ALmacena la lista de nodos de iconos de la fila
+    // ALmacena la lista de nodos de iconos de la fila.
     const iconosDeFila = fila.children;
 
     // Almacena un valor booleano, la coleccion de nodos se convierte en un array 
-    // con every se verifica la condicion de que todos tengan la clase y devuelve el valor booleano almacenado
+    // con every se verifica la condicion de que todos tengan la clase y devuelve el valor booleano almacenado.
     const todosVerdes = Array.from(iconosDeFila).every(icono => icono.classList.contains('icono-verde'));
 
     if (todosVerdes) {
@@ -177,8 +189,8 @@ function validarColorFila(fila) {
 }
 
 /**
- * Funcion para cantar una linea
- * Busca las lineas que han sido cantadas si es menor que 3, canta la linea
+ * Funcion para cantar una linea.
+ * Busca las lineas que han sido cantadas si es menor que 3, canta la linea.
  */
 function cantarLinea() {
 
@@ -186,10 +198,10 @@ function cantarLinea() {
 
     if (lineasCantadas.length < 3) {
 
-        // Crea el contenido del mensaje
+        // Crea el contenido del mensaje.
         const lineaCantada = '!Linea Cantada!';
 
-        // Le da el valor del contenido al elemento mensaje y lo añado al DOM
+        // Le da el valor del contenido al elemento mensaje y lo añado al DOM.
         mensaje.textContent = lineaCantada;
         contenedorMensajes.appendChild(mensaje);
 
@@ -197,19 +209,19 @@ function cantarLinea() {
 }
 
 /**
- * Funcion que muestra el mensaje de bingo por pantalla
- * Oculta el boton de añadir numero y muestra el de nueva partida 
+ * Funcion que muestra el mensaje de bingo por pantalla.
+ * Oculta el boton de añadir numero y muestra el de nueva partida.
  */
 function cantarBingo() {
 
-    // Crea el contenido del mensaje
+    // Creo el contenido del mensaje
     const bingo = '!BINGO!';
 
-    // Le da el valor del contenido al elemento mensaje y lo añado al DOM
+    // Le doy el valor del contenido al elemento mensaje y lo añado al DOM
     mensaje.textContent = bingo;
     contenedorMensajes.appendChild(mensaje);
 
-    // Oculta y muestra los botones 
+    // Oculto y muestra los botones 
     botonEmpezar.style.display = 'block';
     botonNewNumero.style.display = 'none';
 
@@ -250,7 +262,7 @@ function todasAzules() {
  * @returns - Devuelve la fila completa que contiene el icono que coincide con el numero salido
  */
 function buscarfila(nuevoNumero) {
-
+    
     const filasCarton = document.querySelectorAll('.fila');
     let fila = null;
 
@@ -310,17 +322,28 @@ function mostrarNumero(numerosBingo, n) {
  * - Añade el evento de escucha sobre el boton de añadir numero que llama a la funcion mostrarNewNumero()
  */
 function comenzarJuego() {
+
+    // Oculta el botón de nueva partida y muestra el de añadir número que permanecia oculto
     botonNewNumero.style.display = 'block';
     botonEmpezar.style.display = 'none';
-    limpiarDOM();
 
+    // Limpia el Dom de posibles interaciones anteriores.
+    limpiarDOM();
+    
+    // Crea el carton
     let carton = new Carton();
+    
+    // Genero los números del bingo y del carton
     numerosBingo = generarNumeros(99);
     let numerosCarton = generarNumeros(15);
+    // Copio los numeros del carton en la variable n para las validaciones.
     n = numerosCarton.slice();
+
+    // Relleno el cartón y lo muestro
     carton.carton = rellenarCarton(numerosCarton);
     mostrarCarton(carton.carton);
 
+    // Añado el evento de escucha para el botón de añadir numero que al hacer clicl llama a la funcion mostrarNewNumero()
     botonNewNumero.addEventListener('click', mostrarNewNumero);
 }
 

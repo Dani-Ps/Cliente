@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="error-messages"></div>
+
+    <form id="vaccine-form" action="vacuna.php" method="post">
+        <label for="nombre">Nombre paciente:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre del paciente">
+
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" name="dni" placeholder="99.999.999-X">
+
+        <label for="fabricante">Fabricante de la vacuna:</label>
+        <select id="fabricante" name="fabricante">
+            <option value="" selected disabled>Selecciona un fabricante</option>
+            <option value="Oxford-Astrazeneca">Oxford-Astrazeneca</option>
+            <option value="Moderna">Moderna</option>
+            <option value="Pfizer-Biontech">Pfizer-Biontech</option>
+        </select>
+
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" placeholder="********">
+
+        <button type="reset">Reset</button>
+        <button type="submit" id="enviar">Enviar</button>
+    </form>
+    <script src="script.js" defer></script>
+</body>
+
+</html>
+<!-- Daniel Perez Serrano -->

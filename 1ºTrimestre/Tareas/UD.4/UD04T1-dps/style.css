@@ -1,0 +1,11 @@
+/**
+ * Daniel Perez Serrano
+ */
+
+.error {
+    color: red;
+    border: 1px solid red;
+}
+.success {
+    border: 1px solid green;
+}

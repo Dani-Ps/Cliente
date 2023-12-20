@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
         validateField(passwordInput, 'password');
     });
 
-    // Cambiar 'click' a 'submit' en el botón de enviar
     const enviar = document.getElementById('enviar');
     enviar.addEventListener('click', function (event) {
         event.preventDefault();
@@ -66,6 +65,10 @@ function validateField(input, fieldName) {
             if (!value.trim()) {
                 input.className = 'error';
                 displayErrorMessage('Nombre es obligatorio.');
+            } else if (/\d/.test(value)) {
+                // Si el nombre contiene caracteres numéricos
+                input.className = 'error';
+                displayErrorMessage('El nombre no debe contener caracteres numéricos.');
             } else {
                 input.className = 'success';
                 clearErrorMessage();

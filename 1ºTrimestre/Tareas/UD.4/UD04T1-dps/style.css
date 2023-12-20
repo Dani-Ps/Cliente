@@ -2,10 +2,57 @@
  * Daniel Perez Serrano
  */
 
+
+ body{
+    background-color: black; /* Fondo negro para la pantalla */
+    width: 80vw;
+    width: 80vw;
+    margin: 100px auto;
+
+}
+
+form{
+    width: 80vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white; /* Fondo blanco para el formulario */
+    padding: 20px; /* Ajusta el relleno según sea necesario */
+    border-radius: 10px; /* Añade bordes redondeados al formulario si lo deseas */
+    box-shadow: 0 0 10px rgb(251 251 251 / 50%);
+}
+
+#vaccine-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
 .error {
     color: red;
     border: 1px solid red;
+    border-radius: 5px;
+
 }
 .success {
     border: 1px solid green;
+    border-radius: 5px;
+
 }
+
+input{
+    border-radius: 5px;
+
+}
+
+
+

@@ -2,8 +2,7 @@
  * Daniel Perez Serrano
  */
 
-
- body{
+body{
     background-color: black; /* Fondo negro para la pantalla */
     width: 80vw;
     width: 80vw;
@@ -17,9 +16,9 @@ form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: white; /* Fondo blanco para el formulario */
-    padding: 20px; /* Ajusta el relleno según sea necesario */
-    border-radius: 10px; /* Añade bordes redondeados al formulario si lo deseas */
+    background-color: white;
+    padding: 20px; 
+    border-radius: 10px;
     box-shadow: 0 0 10px rgb(251 251 251 / 50%);
 }
 

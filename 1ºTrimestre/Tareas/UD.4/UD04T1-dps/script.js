@@ -1,11 +1,12 @@
+// Cargo el DOM antes que ejecutar ningun script
 document.addEventListener('DOMContentLoaded', function () {
-    // Obtener referencias a los elementos del formulario
+    // Obtengo los elementos del formulario
     var nombreInput = document.getElementById('nombre');
     var dniInput = document.getElementById('dni');
     var fabricanteInput = document.getElementById('fabricante');
     var passwordInput = document.getElementById('password');
 
-    // Agregar eventos input a cada campo del formulario
+    // Agregar eventos input a cada campo del formulario para la validación en tiempo real
     nombreInput.addEventListener('input', function () {
         validateField(nombreInput, 'nombre');
     });
@@ -22,19 +23,22 @@ document.addEventListener('DOMContentLoaded', function () {
         validateField(passwordInput, 'password');
     });
 
+    // Agrego evento click al botón de enviar para realizar la validación antes de enviar el formulario
     const enviar = document.getElementById('enviar');
     enviar.addEventListener('click', function (event) {
-        event.preventDefault();
+        event.preventDefault(); // Evita que el formulario se envíe automáticamente
         validateAll();
     });
 });
 
+// Función que realiza la validación de todos los campos antes de enviar el formulario
 function validateAll() {
     var nombreInput = document.getElementById('nombre');
     var dniInput = document.getElementById('dni');
     var fabricanteInput = document.getElementById('fabricante');
     var passwordInput = document.getElementById('password');
 
+    // Valido cada campo individualmente
     validateField(nombreInput, 'nombre');
     validateField(dniInput, 'dni');
     validateField(fabricanteInput, 'fabricante');
@@ -51,22 +55,23 @@ function validateAll() {
         return false;
     }
 
-    // Si todos los campos son válidos, entonces puedes enviar el formulario
+    // Si todos los campos son válidos envio el formulario
     document.getElementById('vaccine-form').submit();
 }
 
+// Función que realiza la validación de un campo específico según su nombre y muestra mensajes de error o éxito
 function validateField(input, fieldName) {
     var value = input.value;
     var errorMessages = document.getElementById('error-messages');
 
     switch (fieldName) {
         case 'nombre':
-            // Validar nombre
+            // Valido el nombre
             if (!value.trim()) {
                 input.className = 'error';
                 displayErrorMessage('Nombre es obligatorio.');
             } else if (/\d/.test(value)) {
-                // Si el nombre contiene caracteres numéricos
+                // Compruebo si el nombre contiene caracteres numéricos
                 input.className = 'error';
                 displayErrorMessage('El nombre no debe contener caracteres numéricos.');
             } else {
@@ -76,7 +81,7 @@ function validateField(input, fieldName) {
             break;
 
         case 'dni':
-            // Validar DNI
+            // Valido DNI
             var dniRegex = /^\d{2}\.\d{3}\.\d{3}-[a-zA-Z]$/;
             if (!value.trim() || !value.match(dniRegex)) {
                 input.className = 'error';
@@ -88,7 +93,7 @@ function validateField(input, fieldName) {
             break;
 
         case 'fabricante':
-            // Validar fabricante
+            // Valido fabricante
             if (!value) {
                 input.className = 'error';
                 displayErrorMessage('Selecciona un fabricante de vacuna.');
@@ -102,7 +107,7 @@ function validateField(input, fieldName) {
             break;
 
         case 'password':
-            // Validar password
+            // Valido password
             var passwordRegex = /^[A-Z]{2}[^A-Za-z0-9:][a-zA-Z#]+\d{2}$/;
             if (!value.trim() || !value.match(passwordRegex)) {
                 input.className = 'error';
@@ -118,17 +123,20 @@ function validateField(input, fieldName) {
     }
 }
 
+// Función que muestra mensajes de error en el elemento 'error-messages'
 function displayErrorMessage(message) {
     var errorMessages = document.getElementById('error-messages');
     errorMessages.className = 'error';
     errorMessages.innerHTML = message;
 }
 
+// Función que limpia los mensajes de error en el elemento 'error-messages'
 function clearErrorMessage() {
     var errorMessages = document.getElementById('error-messages');
     errorMessages.className = 'none';
     errorMessages.innerHTML = '';
 }
+
 /**
- * Daniel Perez Serrano
+ * Autor: Daniel Perez Serrano
  */

@@ -1,0 +1,62 @@
+    /**
+    * Daniel Perez Serrano
+    */
+
+    body{
+        background-color: black; /* Fondo negro para la pantalla */
+        width: 80vw;
+        width: 80vw;
+        margin: 100px auto;
+
+    }
+
+    form{
+        width: 80vw;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+        padding: 20px; 
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgb(251 251 251 / 50%);
+    }
+
+    #tv-form {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .error {
+        border: 2px solid red;
+        border-radius: 5px;
+
+    }
+    #error-messages{
+        color: red;
+        border: none;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+    .success {
+        border: 2px solid green;
+        border-radius: 5px;
+
+    }
+
+    input{
+        border-radius: 5px;
+
+    }
+
+
+

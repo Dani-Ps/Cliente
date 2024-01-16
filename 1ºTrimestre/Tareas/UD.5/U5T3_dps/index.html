@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Almacenamiento Web</title>
+</head>
+
+<body>
+  <h1>Ejemplo de Almacenamiento local con HTML5</h1>
+
+  <label for="tipoAlmacenamiento">Tipo de Almacenamiento:</label>
+  <select id="tipoAlmacenamiento">
+    <option value="localStorage">LOCAL</option>
+    <option value="sessionStorage">SESION</option>
+  </select>
+
+  <label for="clave">Clave:</label>
+  <input type="text" id="clave">
+
+  <label for="valor">Valor:</label>
+  <input type="text" id="valor">
+
+  <button type="button" id="guardarBtn">Guardar</button>
+  <button type="button" id="eliminarBtn">Eliminar</button>
+  <button type="button" id="refrescarBtn">Refrescar</button>
+  <button type="button" id="compatibilidadBtn">Comprobar compatibilidad del navegador</button>
+
+  <h2>Resultados</h2>
+  <h3>localStorage</h3>
+  <textarea id="localStorageData" readonly></textarea>
+
+  <h3>sessionStorage</h3>
+  <textarea id="sessionStorageData" readonly></textarea>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

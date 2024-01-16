@@ -1,15 +1,23 @@
+// Este código utiliza el evento "DOMContentLoaded" para asegurarse de que el documento HTML ha sido completamente cargado antes de ejecutar el script.
+
 document.addEventListener("DOMContentLoaded", function () {
+
     // Funciones para operaciones
+
+    // Función para guardar datos en el almacenamiento local o de sesión.
     function guardarDatos() {
+        // Obtener los valores de los elementos de entrada.
         var tipoAlmacenamiento = document.getElementById("tipoAlmacenamiento").value;
         var clave = document.getElementById("clave").value;
         var valor = document.getElementById("valor").value;
 
+        // Verificar si la clave y el valor están vacíos.
         if (!clave || !valor) {
             alert("Por favor, complete tanto la clave como el valor.");
             return;
         }
 
+        // Almacenar datos en localStorage o sessionStorage según la selección del usuario.
         if (tipoAlmacenamiento === "localStorage") {
             localStorage.setItem(clave, valor);
             actualizarTextarea("localStorageData");
@@ -19,15 +27,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Función para eliminar datos del almacenamiento local o de sesión.
     function eliminarDatos() {
+        // Obtener los valores de los elementos de entrada.
         var tipoAlmacenamiento = document.getElementById("tipoAlmacenamiento").value;
         var clave = document.getElementById("clave").value;
 
+        // Verificar si la clave está vacía.
         if (!clave) {
             alert("Por favor, introduzca una clave.");
             return;
         }
 
+        // Eliminar datos de localStorage o sessionStorage según la selección del usuario.
         if (tipoAlmacenamiento === "localStorage") {
             localStorage.removeItem(clave);
             actualizarTextarea("localStorageData");
@@ -37,11 +49,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Función para refrescar la visualización de datos en el textarea.
     function refrescar() {
         actualizarTextarea("localStorageData");
         actualizarTextarea("sessionStorageData");
     }
 
+    // Función para comprobar la compatibilidad del navegador con el almacenamiento local.
     function comprobarCompatibilidad() {
         if (typeof (Storage) !== "undefined") {
             alert("¡El almacenamiento local es compatible con este navegador!");
@@ -50,8 +64,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // Función para actualizar el contenido del textarea según el tipo de almacenamiento.
     function actualizarTextarea(elementId) {
         var data = "";
+
+        // Construir una cadena con clave: valor para cada elemento en localStorage o sessionStorage.
         if (elementId === "localStorageData") {
             for (var i = 0; i < localStorage.length; i++) {
                 var key = localStorage.key(i);
@@ -70,8 +87,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Asignar eventos a los botones
+
+    // Agregar event listeners a los botones correspondientes.
     document.getElementById("guardarBtn").addEventListener("click", guardarDatos);
     document.getElementById("eliminarBtn").addEventListener("click", eliminarDatos);
     document.getElementById("refrescarBtn").addEventListener("click", refrescar);
     document.getElementById("compatibilidadBtn").addEventListener("click", comprobarCompatibilidad);
+
 });

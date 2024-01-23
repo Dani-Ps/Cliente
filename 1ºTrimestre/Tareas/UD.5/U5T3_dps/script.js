@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
-
+    script.js
     // Funcion para guardar datos en el almacenamiento local o de sesion
     function guardarDatos() {
         // Obtener los valores de los elementos de entrada

@@ -1,0 +1,38 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.758);
+    
+}
+
+form{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    align-items: center;
+
+
+}
+input{
+    margin: 20px;
+    width: 200px;
+    height: 35px;
+    border-radius: 5px;
+
+
+}
+button{
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+h1 {
+    color: white;
+}
+
+#result{
+    color: white;
+}

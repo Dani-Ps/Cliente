@@ -26,3 +26,7 @@ function sendForm() {
             resultDiv.textContent = 'Ha ocurrido un error. Por favor, inténtalo de nuevo.';
         });
 }
+
+/**
+ * Daniel Perez Serrano
+ */

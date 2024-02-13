@@ -5,29 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subir Foto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="dark">
 
-    <h1>Subir Foto de Alumno</h1>
+    <div class="container">
+        <h1 class="mt-5">Subir Foto de Alumno</h1>
 
-    <form id="formulario" enctype="multipart/form-data">
-        <label for="nombre">Nombre:</label><br>
-        <input type="text" id="nombre" name="nombre" required><br><br>
+        <form id="formulario" class="mt-4" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" required>
+            </div>
 
-        <label for="apellido">Apellido:</label><br>
-        <input type="text" id="apellido" name="apellido" required><br><br>
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" class="form-control" required>
+            </div>
 
-        <label for="foto">Foto:</label><br>
-        <input type="file" id="foto" name="foto" accept="image/*" required><br><br>
+            <div class="mb-3">
+                <label for="foto" class="form-label">Foto:</label>
+                <input type="file" id="foto" name="foto" class="form-control" accept="image/*" required>
+            </div>
 
-        <input type="submit" value="Subir Foto">
-    </form>
+            <button type="submit" class="btn btn-primary">Subir Foto</button>
+        </form>
 
-    <div id="respuesta"></div>
+        <div id="grid-alumnos" class="row row-cols-1 row-cols-md-2 g-4"></div>
+
+    </div>
+
 
     <script src="script.js"></script>
 
 </body>
 
 </html>
+
+<!--
+    Daniel Perez Serrano
+-->

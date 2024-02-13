@@ -1,0 +1,53 @@
+/**
+ * Daniel Perez Serrano
+ */
+body.dark {
+    background-color: #343a40;
+    color: #fff;
+}
+
+body.dark .form-label {
+    color: #fff;
+}
+
+body.dark .form-control {
+    background-color: #495057;
+    border-color: #495057;
+    color: #fff;
+}
+
+body.dark .form-control:focus {
+    background-color: #495057;
+    border-color: #495057;
+    color: #fff;
+}
+
+body.dark .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+body.dark .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.alumno {
+    max-width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.alumno img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.nombre-apellido {
+    text-align: center;
+    margin-top: 5px;
+}
+#grid-alumnos{
+    margin-top: 100px;
+}

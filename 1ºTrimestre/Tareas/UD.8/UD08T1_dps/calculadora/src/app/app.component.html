@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="display">{{ display }}</div>
+  <div class="num-buttons">
+    <div class="button button-1" (click)="numClick(1)">1</div>
+    <div class="button button-2" (click)="numClick(2)">2</div>
+    <div class="button button-3" (click)="numClick(3)">3</div>
+    <div class="button button-4" (click)="numClick(4)">4</div>
+    <div class="button button-5" (click)="numClick(5)">5</div>
+    <div class="button button-6" (click)="numClick(6)">6</div>
+    <div class="button button-7" (click)="numClick(7)">7</div>
+    <div class="button button-8" (click)="numClick(8)">8</div>
+    <div class="button button-9" (click)="numClick(9)">9</div>
+    <div class="button button-0" (click)="numClick(0)">0</div>
+  </div>
+
+  <div class="operator-buttons">
+    <div class="button button-a" (click)="oper('a')">+</div>
+    <div class="button button-s" (click)="oper('s')">-</div>
+    <div class="button button-m" (click)="oper('m')">x</div>
+  </div>
+
+  <button class="equals" (click)="calculate()">=</button>
+  <button class="clear" (click)="clearDisplay()">C</button>
+</div>
+
+
+
+<router-outlet />

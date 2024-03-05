@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col" *ngFor="let pais of paises">
+        <div class="card">
+            <img class="card-img-top" [src]="pais.flags.png" alt="Bandera de {{ pais.name.common }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ pais.name.common }}</h5>
+                <p class="card-text">Capital: {{ pais.capital }}</p>
+            </div>
+        </div>
+    </div>
+</div>

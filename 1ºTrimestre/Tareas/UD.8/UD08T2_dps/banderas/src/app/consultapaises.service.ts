@@ -5,12 +5,11 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ConsultaPaisesService {
-  private apiUrl = 'https://restcountries.com/v3.1';
+export class ConsultapaisesService {
 
   constructor(private http: HttpClient) { }
 
-  getPaisesPorContinente(continente: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/region/${continente}`);
+  getPaises(region: string): Observable<any> {
+    return this.http.get(`https://restcountries.com/v3.1/region/${region}`);
   }
 }

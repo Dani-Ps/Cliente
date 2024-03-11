@@ -1,0 +1,12 @@
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+.shadow-label {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 576px) {
+  .custom-col {
+    width: 33.3333333333%;
+    flex: 0 0 33.3333333333%;
+    max-width: 33.3333333333%;
+  }
+}/*# sourceMappingURL=app.component.css.map */

@@ -1,0 +1,12 @@
+@import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+.shadow-label {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+.custom-col {
+    @media (min-width: 576px) {
+        width: calc(100% / 3);
+        flex: 0 0 calc(100% / 3);
+        max-width: calc(100% / 3);
+        }
+      }

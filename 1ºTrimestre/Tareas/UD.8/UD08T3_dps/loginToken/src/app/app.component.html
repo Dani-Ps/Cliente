@@ -1,0 +1,11 @@
+<h2>Login</h2>
+<form (submit)="onSubmit()">
+  <label>Email:</label>
+  <input type="email" [(ngModel)]="email" name="email" required>
+  <br>
+  <label>Password:</label>
+  <input type="password" [(ngModel)]="password" name="password" required>
+  <br>
+  <button type="submit">Login</button>
+</form>
+<p *ngIf="token">Token: {{ token }}</p>

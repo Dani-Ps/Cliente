@@ -1,11 +1,22 @@
-<h2>Login</h2>
-<form (submit)="onSubmit()">
-  <label>Email:</label>
-  <input type="email" [(ngModel)]="email" name="email" required>
-  <br>
-  <label>Password:</label>
-  <input type="password" [(ngModel)]="password" name="password" required>
-  <br>
-  <button type="submit">Login</button>
+<h2 class="d-flex justify-content-center p-5 mt-5 ">Login</h2>
+<form (submit)="onSubmit()" class="needs-validation login d-flex flex-column justify-content-center">
+  <div class="form-group p-3 ">
+    <label for="email">Email:</label>
+    <input type="email" [(ngModel)]="email" name="email" id="email" class="form-control" required>
+    <div class="invalid-feedback">
+      Porfavor introduce un email válido.
+    </div>
+  </div>
+  <div class="form-group p-3 ">
+    <label for="password">Password:</label>
+    <input type="password" [(ngModel)]="password" name="password" id="password" class="form-control" required>
+    <div class="invalid-feedback">
+      Porfavor introduzca la contraseña.
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mt-2">Login</button>
 </form>
-<p *ngIf="token">Token: {{ token }}</p>
+<div class="token-container d-flex flex-row justify-content-center">
+<p *ngIf="token" class="mt-4">Token: </p>
+<p *ngIf="token" class="mt-4 ml-2 text-success">{{ token }}</p>
+</div>

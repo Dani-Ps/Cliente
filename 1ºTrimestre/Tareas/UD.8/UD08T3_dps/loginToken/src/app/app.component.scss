@@ -1,0 +1,14 @@
+.login{
+  width: 30vw;
+  height: auto;
+  margin: 0 auto;
+
+}
+.token-container{
+  width: 20vw;
+  height: auto;
+  margin: 0 auto;
+  :last-child{
+    margin-left: 1rem;
+  }
+}

@@ -10,6 +10,6 @@ export class ConsultapaisesService {
   constructor(private http: HttpClient) { }
 
   getPaises(region: string): Observable<any> {
-    return this.http.get(`https://restcountries.com/v3.1/region/${region}`);
+    return this.http.get(`http://localhost:8080/api/v1/productos/${region}`);
   }
 }

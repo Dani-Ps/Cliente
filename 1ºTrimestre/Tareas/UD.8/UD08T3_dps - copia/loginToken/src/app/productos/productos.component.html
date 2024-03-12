@@ -1,0 +1,15 @@
+<h1 class="d-flex justify-content-center mt-5">Catálogo de productos:</h1>
+<div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="custom-col" *ngFor="let producto of productos"">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ producto.nombre }}</h5>
+            <p class="card-text">Precio: {{ producto.precio }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

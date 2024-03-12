@@ -24,6 +24,7 @@ export class AppComponent {
   onSubmit() {
     this.authService.login(this.email, this.password)
       .then(response => {
+
         this.token = response.token;
       })
       .catch(error => {
